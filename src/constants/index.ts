@@ -1,3 +1,6 @@
+import React from 'react';
+import { createProcessStepImage } from './processImages';
+
 export const SERVICES = [
   "Android Development",
   "Application Development",
@@ -52,4 +55,39 @@ export const SOCIAL_LINKS = {
   linkedin: "https://www.linkedin.com/in/dharmik-bhanushali/",
   email: "mailto:contact@example.com"
 };
+
+export interface ProcessStep {
+  id: number;
+  title: string;
+  description: string;
+  image?: React.ReactNode;
+  animation?: React.ReactNode;
+}
+
+export const PROCESS_STEPS: ProcessStep[] = [
+  {
+    id: 1,
+    title: "Discovery & Planning",
+    description: "We start by understanding your vision, goals, and target audience. Through collaborative workshops and research, we map out the strategy that will guide your project from concept to launch.",
+    image: createProcessStepImage('discovery'),
+  },
+  {
+    id: 2,
+    title: "Design & Prototyping",
+    description: "Our design team creates beautiful, user-centric interfaces that balance aesthetics with functionality. We build interactive prototypes to validate concepts before development begins.",
+    image: createProcessStepImage('design'),
+  },
+  {
+    id: 3,
+    title: "Development & Testing",
+    description: "We build your product using modern technologies and best practices. Throughout development, we conduct rigorous testing to ensure quality, performance, and security at every stage.",
+    image: createProcessStepImage('development'),
+  },
+  {
+    id: 4,
+    title: "Launch & Optimization",
+    description: "We deploy your product with confidence and monitor its performance. Post-launch, we continuously optimize based on user feedback and analytics to ensure long-term success.",
+    image: createProcessStepImage('launch'),
+  },
+];
 
