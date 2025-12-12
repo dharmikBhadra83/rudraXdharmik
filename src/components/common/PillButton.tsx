@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
+import React from 'react';
 
 interface PillButtonProps {
   children: ReactNode;
@@ -19,8 +20,27 @@ export const PillButton = ({
   className = ''
 }: PillButtonProps) => {
   
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+    if (href && href.startsWith('#')) {
+      e.preventDefault();
+      const sectionId = href.substring(1);
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const offset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    } else if (onClick) {
+      onClick();
+    }
+  };
+  
   const Component = href ? motion.a : motion.button;
-  const props = href ? { href } : { onClick, type: 'button' as const };
+  const props = href ? { href, onClick: handleClick } : { onClick: handleClick, type: 'button' as const };
 
   const variantStyles = {
     primary: {

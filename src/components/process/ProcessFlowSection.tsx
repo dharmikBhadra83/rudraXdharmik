@@ -92,7 +92,7 @@ export const ProcessFlowSection = ({
   }, []);
 
   return (
-    <div className="relative w-full bg-black text-white font-sans">
+    <div id="work" className="relative w-full bg-black text-white font-sans">
       
       {/* Section Header */}
       <div className="text-center py-20 px-4 sm:px-6 lg:px-8">

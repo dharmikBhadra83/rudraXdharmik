@@ -98,7 +98,7 @@ export const ServicesSection = () => {
   };
 
   return (
-    <section className="relative w-full py-20 px-4 sm:px-6 lg:px-8 bg-black">
+    <section id="services" className="relative w-full py-20 px-4 sm:px-6 lg:px-8 bg-black">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <motion.div 

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { NAV_ITEMS } from '@/constants';
-import { PillButton } from '@/components/common/PillButton';
+import { HoverBorderGradient } from '@/components/ui/hover-border-gradient';
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -100,35 +100,53 @@ export const Navbar = () => {
             zIndex: 1,
           }}
         >
-          {NAV_ITEMS.map((item, index) => (
-            <motion.a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * index, duration: 0.5 }}
-              onMouseEnter={() => setHoveredItem(item)}
-              onMouseLeave={() => setHoveredItem(null)}
-              style={{
-                color: hoveredItem === item ? '#ffffff' : '#cccccc',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                paddingLeft: '14px',
-                paddingRight: '14px',
-                fontSize: '1rem',
-                lineHeight: '1.5',
-                fontWeight: 500,
-                textDecoration: 'none',
-                whiteSpace: 'nowrap',
-                transition: 'color 0.2s',
-                cursor: 'pointer',
-                height: '100%',
-              }}
-            >
-              {item}
-            </motion.a>
-          ))}
+          {NAV_ITEMS.map((item, index) => {
+            const sectionId = item.toLowerCase() === 'work' ? 'work' : item.toLowerCase();
+            const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+              e.preventDefault();
+              const element = document.getElementById(sectionId);
+              if (element) {
+                const offset = 80; // Account for fixed navbar
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+              }
+            };
+            
+            return (
+              <motion.a
+                key={item}
+                href={`#${sectionId}`}
+                onClick={handleClick}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * index, duration: 0.5 }}
+                onMouseEnter={() => setHoveredItem(item)}
+                onMouseLeave={() => setHoveredItem(null)}
+                style={{
+                  color: hoveredItem === item ? '#ffffff' : '#cccccc',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  paddingLeft: '14px',
+                  paddingRight: '14px',
+                  fontSize: '1rem',
+                  lineHeight: '1.5',
+                  fontWeight: 500,
+                  textDecoration: 'none',
+                  whiteSpace: 'nowrap',
+                  transition: 'color 0.2s',
+                  cursor: 'pointer',
+                  height: '100%',
+                }}
+              >
+                {item}
+              </motion.a>
+            );
+          })}
         </div>
 
         {/* Request a demo Button - Right */}
@@ -140,9 +158,28 @@ export const Navbar = () => {
             zIndex: 1,
           }}
         >
-          <PillButton href="#contact" variant="secondary">
+          <HoverBorderGradient
+            as="a"
+            href="#contact"
+            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+              e.preventDefault();
+              const element = document.getElementById('contact');
+              if (element) {
+                const offset = 80;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+              }
+            }}
+            containerClassName="rounded-full"
+            className="bg-black text-white px-6 py-2.5 text-sm font-semibold"
+            duration={1}
+          >
             Request a demo
-          </PillButton>
+          </HoverBorderGradient>
         </div>
       </motion.div>
 
@@ -248,50 +285,70 @@ export const Navbar = () => {
           >
             {/* Mobile Nav Links */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
-              {NAV_ITEMS.map((item, index) => (
-                <motion.a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={() => setIsMenuOpen(false)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ 
-                    opacity: isMenuOpen ? 1 : 0, 
-                    x: isMenuOpen ? 0 : -20 
-                  }}
-                  transition={{ delay: index * 0.08, duration: 0.3 }}
-                  style={{
-                    color: '#cccccc',
-                    fontSize: '1rem',
-                    fontWeight: 500,
-                    textDecoration: 'none',
-                    padding: '12px 16px',
-                    borderRadius: '12px',
-                    transition: 'all 0.2s',
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = '#ffffff';
-                    e.currentTarget.style.backgroundColor = 'rgba(100, 100, 100, 0.2)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = '#cccccc';
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                  }}
-                >
-                  <span style={{
-                    marginRight: '8px',
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                    backgroundImage: 'linear-gradient(135deg, #60a5fa 0%, #8b5cf6 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                  }}>
-                    →
-                  </span>
-                  {item}
-                </motion.a>
-              ))}
+              {NAV_ITEMS.map((item, index) => {
+                const sectionId = item.toLowerCase() === 'work' ? 'work' : item.toLowerCase();
+                const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+                  e.preventDefault();
+                  setIsMenuOpen(false);
+                  setTimeout(() => {
+                    const element = document.getElementById(sectionId);
+                    if (element) {
+                      const offset = 80;
+                      const elementPosition = element.getBoundingClientRect().top;
+                      const offsetPosition = elementPosition + window.pageYOffset - offset;
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                      });
+                    }
+                  }, 100);
+                };
+                
+                return (
+                  <motion.a
+                    key={item}
+                    href={`#${sectionId}`}
+                    onClick={handleClick}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ 
+                      opacity: isMenuOpen ? 1 : 0, 
+                      x: isMenuOpen ? 0 : -20 
+                    }}
+                    transition={{ delay: index * 0.08, duration: 0.3 }}
+                    style={{
+                      color: '#cccccc',
+                      fontSize: '1rem',
+                      fontWeight: 500,
+                      textDecoration: 'none',
+                      padding: '12px 16px',
+                      borderRadius: '12px',
+                      transition: 'all 0.2s',
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = '#ffffff';
+                      e.currentTarget.style.backgroundColor = 'rgba(100, 100, 100, 0.2)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = '#cccccc';
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                    }}
+                  >
+                    <span style={{
+                      marginRight: '8px',
+                      fontSize: '16px',
+                      fontWeight: 'bold',
+                      backgroundImage: 'linear-gradient(135deg, #60a5fa 0%, #8b5cf6 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                    }}>
+                      →
+                    </span>
+                    {item}
+                  </motion.a>
+                );
+              })}
             </div>
             
             {/* Mobile Button */}
@@ -303,14 +360,31 @@ export const Navbar = () => {
               }}
               transition={{ delay: NAV_ITEMS.length * 0.08, duration: 0.3 }}
             >
-              <PillButton 
-                href="#contact" 
-                variant="secondary"
-                onClick={() => setIsMenuOpen(false)}
-                className="w-full"
+              <HoverBorderGradient
+                as="a"
+                href="#contact"
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                  e.preventDefault();
+                  setIsMenuOpen(false);
+                  setTimeout(() => {
+                    const element = document.getElementById('contact');
+                    if (element) {
+                      const offset = 80;
+                      const elementPosition = element.getBoundingClientRect().top;
+                      const offsetPosition = elementPosition + window.pageYOffset - offset;
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                      });
+                    }
+                  }, 100);
+                }}
+                containerClassName="rounded-full w-full"
+                className="bg-black text-white px-6 py-2.5 text-sm font-semibold w-full"
+                duration={1}
               >
                 Request a demo
-              </PillButton>
+              </HoverBorderGradient>
             </motion.div>
           </div>
         </motion.div>

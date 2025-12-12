@@ -6,6 +6,7 @@ import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { HoverBorderGradient } from '@/components/ui/hover-border-gradient';
 
 // Custom input component for PhoneInput to ensure id and name attributes
 const CustomPhoneInput = forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
@@ -367,6 +368,7 @@ export const ContactForm = () => {
         style={{ zIndex: 9999 }}
       />
       <section 
+        id="contact"
         className="relative w-full min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
         style={{
           background: 'linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #000000 100%)',
@@ -709,15 +711,18 @@ export const ContactForm = () => {
                       )}
                     </div>
 
-                    <motion.button
+                    <HoverBorderGradient
+                      as="button"
                       type="submit"
                       disabled={isSubmitting}
-                      className="px-8 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800 disabled:cursor-not-allowed text-white font-semibold transition-all duration-200 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30"
-                      whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                      whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                      containerClassName="rounded-full"
+                      className={`bg-black text-white px-8 py-3 text-base font-semibold ${
+                        isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                      }`}
+                      duration={1}
                     >
                       {isSubmitting ? 'Submitting...' : 'Submit'}
-                    </motion.button>
+                    </HoverBorderGradient>
                   </motion.div>
                 </form>
               </div>

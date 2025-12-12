@@ -14,6 +14,7 @@ import { ProcessFlowSection, ProcessFlowExample } from '@/components/process/Pro
 import { PROCESS_STEPS } from '@/constants';
 import { TestimonialsSection } from '@/components/testimonials/TestimonialsSection';
 import { ContactForm } from '@/components/contact/ContactForm';
+import { Footer } from '@/components/footer/Footer';
 
 export default function Home() {
   return (
@@ -29,11 +30,11 @@ export default function Home() {
 <ProcessFlowSection   steps={PROCESS_STEPS}  title="Our Process"  subtitle="How we work"/>
       <TestimonialsSection />
       <ContactForm />
+      <Footer />
       {/* <CaseStudiesSection /> */}
       {/* <TargetAudienceSection /> */}
       {/* <CTASection /> */}
       {/* <ContactSection /> */}
-      {/* <Footer /> */}
     </div>
   );
 }
