@@ -13,6 +13,7 @@ import { Nav } from '@/components/Nav';
 import { ProcessFlowSection, ProcessFlowExample } from '@/components/process/ProcessFlowSection';
 import { PROCESS_STEPS } from '@/constants';
 import { TestimonialsSection } from '@/components/testimonials/TestimonialsSection';
+import { ContactForm } from '@/components/contact/ContactForm';
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
        */}
 <ProcessFlowSection   steps={PROCESS_STEPS}  title="Our Process"  subtitle="How we work"/>
       <TestimonialsSection />
+      <ContactForm />
       {/* <CaseStudiesSection /> */}
       {/* <TargetAudienceSection /> */}
       {/* <CTASection /> */}

@@ -55,3 +55,279 @@ body {
   mask-position: center top;
   -webkit-mask-position: center top;
 }
+
+.mask-radial-to-90\% {
+  mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 40%, transparent 100%);
+}
+
+.mask-radial-at-center {
+  mask-position: center center;
+  -webkit-mask-position: center center;
+}
+
+/* Phone Input Custom Styles */
+.PhoneInput {
+  display: flex;
+  align-items: center;
+}
+
+.PhoneInputInput {
+  flex: 1;
+  background: #262626 !important;
+  background-color: #262626 !important;
+  border: 2px solid #404040 !important;
+  color: #ffffff !important;
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+  font-size: 16px !important;
+  outline: none !important;
+  transition: all 0.2s !important;
+}
+
+.PhoneInputInput:hover {
+  background: #262626 !important;
+  background-color: #262626 !important;
+}
+
+.PhoneInputInput:focus {
+  background: #262626 !important;
+  background-color: #262626 !important;
+  border-color: rgba(59, 130, 246, 0.5) !important;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.PhoneInputInput:active {
+  background: #262626 !important;
+  background-color: #262626 !important;
+  color: #ffffff !important;
+}
+
+.PhoneInputInput::placeholder {
+  color: #737373 !important;
+  opacity: 1 !important;
+}
+
+.PhoneInputInput:focus::placeholder {
+  color: #737373 !important;
+  opacity: 0.7 !important;
+}
+
+/* Prevent autofill from changing phone input background */
+.PhoneInputInput:-webkit-autofill,
+.PhoneInputInput:-webkit-autofill:hover,
+.PhoneInputInput:-webkit-autofill:focus,
+.PhoneInputInput:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #262626 inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background-color: #262626 !important;
+  background: #262626 !important;
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+
+/* Additional specificity to override any default styles */
+.PhoneInput input,
+.PhoneInput input[type="tel"],
+.phone-input-wrapper .PhoneInputInput,
+.phone-input-wrapper .PhoneInputInput:focus,
+.phone-input-wrapper .PhoneInputInput:hover,
+.phone-input-wrapper .PhoneInputInput:active {
+  background: #262626 !important;
+  background-color: #262626 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Ensure country select also maintains dark background */
+.PhoneInputCountrySelect,
+.PhoneInputCountrySelect:focus,
+.PhoneInputCountrySelect:hover,
+.PhoneInputCountrySelect:active {
+  background: #262626 !important;
+  background-color: #262626 !important;
+  color: #ffffff !important;
+}
+
+.PhoneInputCountry {
+  margin-right: 8px;
+}
+
+.PhoneInputCountryIcon {
+  width: 24px;
+  height: 18px;
+  border-radius: 2px;
+}
+
+.PhoneInputCountrySelect {
+  background: #262626 !important;
+  background-color: #262626 !important;
+  border: 2px solid #404040 !important;
+  color: #ffffff !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  margin-right: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.PhoneInputCountrySelect:hover {
+  background: #262626 !important;
+  background-color: #262626 !important;
+}
+
+.PhoneInputCountrySelect:focus {
+  background: #262626 !important;
+  background-color: #262626 !important;
+  border-color: rgba(59, 130, 246, 0.5) !important;
+  outline: none;
+  color: #ffffff !important;
+}
+
+.PhoneInputCountrySelect:active {
+  background: #262626 !important;
+  background-color: #262626 !important;
+  color: #ffffff !important;
+}
+
+.PhoneInputCountrySelectArrow {
+  opacity: 0.7;
+  border-color: white transparent transparent;
+}
+
+.phone-input-wrapper.error .PhoneInputInput,
+.phone-input-wrapper.error .PhoneInputCountrySelect {
+  background: #262626 !important;
+  background-color: #262626 !important;
+  border-color: rgb(239, 68, 68) !important;
+  border-width: 2px !important;
+  color: #ffffff !important;
+}
+
+.phone-input-wrapper.error .PhoneInputInput:focus,
+.phone-input-wrapper.error .PhoneInputCountrySelect:focus {
+  background: #262626 !important;
+  background-color: #262626 !important;
+  border-color: rgb(239, 68, 68) !important;
+  box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.phone-input-wrapper:not(.error) .PhoneInputInput,
+.phone-input-wrapper:not(.error) .PhoneInputCountrySelect {
+  background: #262626 !important;
+  background-color: #262626 !important;
+  border-color: #404040 !important;
+  border-width: 2px !important;
+  color: #ffffff !important;
+}
+
+.phone-input-wrapper:not(.error) .PhoneInputInput:focus,
+.phone-input-wrapper:not(.error) .PhoneInputCountrySelect:focus {
+  background: #262626 !important;
+  background-color: #262626 !important;
+  border-color: rgba(59, 130, 246, 0.5) !important;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.2) !important;
+  color: #ffffff !important;
+}
+
+/* Ensure inputs maintain dark background on all states */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  background-color: #262626 !important;
+  color: #ffffff !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+  background-color: #262626 !important;
+  color: #ffffff !important;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="tel"]:hover,
+textarea:hover {
+  background-color: #262626 !important;
+}
+
+input[type="text"]:active,
+input[type="email"]:active,
+input[type="tel"]:active,
+textarea:active {
+  background-color: #262626 !important;
+  color: #ffffff !important;
+}
+
+/* Prevent autofill from changing background color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #262626 inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background-color: #262626 !important;
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+
+/* Ensure placeholder color stays consistent */
+input::placeholder,
+textarea::placeholder {
+  color: #737373 !important;
+  opacity: 1 !important;
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  color: #737373 !important;
+  opacity: 0.7 !important;
+}
+
+/* Override any white backgrounds that might appear */
+input,
+textarea,
+select {
+  background-color: #262626 !important;
+  color: #ffffff !important;
+}
+
+input:not([type="checkbox"]):not([type="radio"]),
+textarea,
+select {
+  background-color: #262626 !important;
+  color: #ffffff !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Force dark background on all input states - highest priority */
+input[type="text"]:not([type="checkbox"]):not([type="radio"]),
+input[type="email"]:not([type="checkbox"]):not([type="radio"]),
+input[type="tel"]:not([type="checkbox"]):not([type="radio"]),
+textarea {
+  background: #262626 !important;
+  background-color: #262626 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+}
+
+input[type="text"]:focus:not([type="checkbox"]):not([type="radio"]),
+input[type="email"]:focus:not([type="checkbox"]):not([type="radio"]),
+input[type="tel"]:focus:not([type="checkbox"]):not([type="radio"]),
+textarea:focus {
+  background: #262626 !important;
+  background-color: #262626 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+}
