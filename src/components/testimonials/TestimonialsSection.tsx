@@ -85,16 +85,18 @@ export const TestimonialsSection = () => {
 
   return (
     <section 
-      className="relative w-full min-h-screen flex items-center justify-center py-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden"
       style={{
         background: 'linear-gradient(180deg, #000000 0%, #0a0a0f 50%, #000000 100%)',
+        paddingTop: 'clamp(3rem, 8vh, 6.25rem)',
+        paddingBottom: 'clamp(3rem, 8vh, 6.25rem)',
       }}
     >
       {/* Background Ripple Effect */}
       <BackgroundRippleEffect rows={8} cols={27} cellSize={56} />
 
       {/* Content Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title and Subtitle */}
         <motion.div
           variants={containerVariants}
@@ -106,9 +108,15 @@ export const TestimonialsSection = () => {
           {/* Badge */}
           <motion.div
             variants={itemVariants}
-            className="flex justify-center mb-12"
+            className="flex justify-center"
+            style={{ marginBottom: 'clamp(2rem, 5vh, 3rem)' }}
           >
-            <div className="relative overflow-hidden flex items-center gap-3 px-5 py-2.5 rounded-full border border-blue-500/40 bg-blue-500/10">
+            <div className="relative overflow-hidden flex items-center rounded-full border border-blue-500/40 bg-blue-500/10"
+              style={{
+                gap: 'clamp(8px, 2vw, 12px)',
+                padding: 'clamp(8px, 2vw, 10px) clamp(16px, 4vw, 20px)',
+              }}
+            >
               <motion.div
                 className="absolute inset-0"
                 style={{
@@ -118,31 +126,45 @@ export const TestimonialsSection = () => {
                 transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, ease: 'linear' }}
               />
               <motion.span 
-                className="relative w-2 h-2 rounded-full bg-blue-500"
+                className="relative rounded-full bg-blue-500"
+                style={{
+                  width: 'clamp(6px, 1.5vw, 8px)',
+                  height: 'clamp(6px, 1.5vw, 8px)',
+                }}
                 animate={{
                   boxShadow: ['0 0 8px rgba(59, 130, 246, 0.8)', '0 0 16px rgba(59, 130, 246, 1)', '0 0 8px rgba(59, 130, 246, 0.8)'],
                   scale: [1, 1.2, 1],
                 }}
                 transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
               />
-              <span className="relative text-sm font-semibold text-blue-400">Testimonials</span>
+              <span 
+                className="relative font-semibold text-blue-400"
+                style={{
+                  fontSize: 'clamp(0.75rem, 2vw, 0.875rem)',
+                }}
+              >
+                Testimonials
+              </span>
             </div>
           </motion.div>
 
           <motion.h2
             variants={titleVariants}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4"
+            className="font-bold text-white"
             style={{
               fontFamily: 'sans-serif',
+              fontSize: 'clamp(2rem, 6vw, 3.75rem)',
+              marginBottom: 'clamp(1rem, 2vh, 1.5rem)',
             }}
           >
             What people say
           </motion.h2>
           <motion.p
             variants={titleVariants}
-            className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto"
+            className="text-gray-400 max-w-2xl mx-auto"
             style={{
               fontFamily: 'sans-serif',
+              fontSize: 'clamp(0.938rem, 2.5vw, 1.125rem)',
             }}
           >
             Discover what our satisfied customers have to say about their experiences with our products/services.
@@ -155,7 +177,11 @@ export const TestimonialsSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          style={{
+            gap: 'clamp(1.5rem, 4vw, 2rem)',
+            marginTop: 'clamp(2rem, 5vh, 4rem)',
+          }}
         >
           {testimonials.map((testimonial) => (
             <motion.div
@@ -164,20 +190,24 @@ export const TestimonialsSection = () => {
               className="relative group"
             >
               <div
-                className="relative h-full rounded-2xl p-6 lg:p-8"
+                className="relative h-full rounded-2xl"
                 style={{
                   background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(20, 20, 50, 0.4) 50%, rgba(10, 10, 30, 0.6) 100%)',
                   backdropFilter: 'blur(20px)',
                   WebkitBackdropFilter: 'blur(20px)',
                   border: '1px solid rgba(255, 255, 255, 0.08)',
                   boxShadow: '0 4px 24px 0 rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05) inset, 0 0 40px rgba(0, 0, 0, 0.3) inset',
+                  padding: 'clamp(1.5rem, 4vw, 2rem)',
                 }}
               >
                 {/* Avatar */}
-                <div className="flex items-center mb-5">
+                <div className="flex items-center" style={{ marginBottom: 'clamp(1rem, 3vh, 1.25rem)' }}>
                   <div
-                    className="w-12 h-12 rounded-full overflow-hidden mr-4 flex-shrink-0"
+                    className="rounded-full overflow-hidden flex-shrink-0"
                     style={{
+                      width: 'clamp(40px, 8vw, 48px)',
+                      height: 'clamp(40px, 8vw, 48px)',
+                      marginRight: 'clamp(0.75rem, 2vw, 1rem)',
                       border: '2px solid rgba(255, 255, 255, 0.15)',
                     }}
                   >
@@ -189,17 +219,20 @@ export const TestimonialsSection = () => {
                   </div>
                   <div>
                     <h3 
-                      className="text-base sm:text-lg font-bold text-white mb-1"
+                      className="font-bold text-white"
                       style={{
                         fontFamily: 'sans-serif',
+                        fontSize: 'clamp(0.875rem, 2vw, 1.125rem)',
+                        marginBottom: 'clamp(0.25rem, 1vh, 0.5rem)',
                       }}
                     >
                       {testimonial.name}
                     </h3>
                     <p 
-                      className="text-xs sm:text-sm text-gray-400"
+                      className="text-gray-400"
                       style={{
                         fontFamily: 'sans-serif',
+                        fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)',
                       }}
                     >
                       {testimonial.title}
@@ -209,9 +242,11 @@ export const TestimonialsSection = () => {
 
                 {/* Quote */}
                 <p 
-                  className="text-gray-300 leading-relaxed text-sm sm:text-base"
+                  className="text-gray-300 leading-relaxed"
                   style={{
                     fontFamily: 'sans-serif',
+                    fontSize: 'clamp(0.875rem, 2.2vw, 1rem)',
+                    lineHeight: 'clamp(1.5, 2vw, 1.75)',
                   }}
                 >
                   {testimonial.quote}

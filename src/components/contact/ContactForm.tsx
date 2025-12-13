@@ -187,9 +187,7 @@ export const ContactForm = () => {
           const errorElement = document.querySelector(`[name="${field}"]`)?.parentElement?.querySelector('.text-red-400');
           if (errorElement) {
             let element: HTMLElement | null = null;
-            if (field === 'phone') {
-              element = document.querySelector('.PhoneInputInput') as HTMLElement;
-            } else if (field === 'agreeToTerms') {
+            if (field === 'agreeToTerms') {
               element = document.querySelector('[name="agreeToTerms"]')?.parentElement?.parentElement as HTMLElement;
             } else {
               element = document.querySelector(`[name="${field}"]`) as HTMLElement;
@@ -329,9 +327,11 @@ export const ContactForm = () => {
       />
       <section 
         id="contact"
-        className="relative w-full min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+        className="relative w-full min-h-screen flex items-center justify-center overflow-hidden"
         style={{
           background: 'linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #000000 100%)',
+          paddingTop: 'clamp(3rem, 8vh, 6.25rem)',
+          paddingBottom: 'clamp(3rem, 8vh, 6.25rem)',
         }}
       >
         {/* Blue Glow Effect on Right Side */}
@@ -344,16 +344,22 @@ export const ContactForm = () => {
         />
 
         {/* Main Container */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Badge */}
           <motion.div
             variants={badgeVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="flex justify-center mb-12"
+            className="flex justify-center"
+            style={{ marginBottom: 'clamp(2rem, 5vh, 3rem)' }}
           >
-            <div className="relative overflow-hidden flex items-center gap-3 px-5 py-2.5 rounded-full border border-blue-500/40 bg-blue-500/10">
+            <div className="relative overflow-hidden flex items-center rounded-full border border-blue-500/40 bg-blue-500/10"
+              style={{
+                gap: 'clamp(8px, 2vw, 12px)',
+                padding: 'clamp(8px, 2vw, 10px) clamp(16px, 4vw, 20px)',
+              }}
+            >
               <motion.div
                 className="absolute inset-0"
                 style={{
@@ -363,14 +369,25 @@ export const ContactForm = () => {
                 transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, ease: 'linear' }}
               />
               <motion.span 
-                className="relative w-2 h-2 rounded-full bg-blue-500"
+                className="relative rounded-full bg-blue-500"
+                style={{
+                  width: 'clamp(6px, 1.5vw, 8px)',
+                  height: 'clamp(6px, 1.5vw, 8px)',
+                }}
                 animate={{
                   boxShadow: ['0 0 8px rgba(59, 130, 246, 0.8)', '0 0 16px rgba(59, 130, 246, 1)', '0 0 8px rgba(59, 130, 246, 0.8)'],
                   scale: [1, 1.2, 1],
                 }}
                 transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
               />
-              <span className="relative text-sm font-semibold text-blue-400 uppercase tracking-wider">Contact Us</span>
+              <span 
+                className="relative font-semibold text-blue-400 uppercase tracking-wider"
+                style={{
+                  fontSize: 'clamp(0.75rem, 2vw, 0.875rem)',
+                }}
+              >
+                Contact Us
+              </span>
             </div>
           </motion.div>
 
@@ -397,37 +414,71 @@ export const ContactForm = () => {
               }}
             />
 
-            <div className="relative grid grid-cols-1 lg:grid-cols-[40%_60%] min-h-[600px]">
+            <div className="relative grid grid-cols-1 lg:grid-cols-[40%_60%]"
+              style={{ minHeight: 'clamp(500px, 80vh, 600px)' }}
+            >
               {/* Left Column - Contact Information */}
-              <div className="p-8 lg:p-12 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-neutral-800 relative z-10">
-                <motion.div variants={itemVariants} className="w-full pr-4">
-                  <h2 className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-bold text-white mb-4" style={{ lineHeight: '1.2', wordSpacing: 'normal' }}>
+              <div className="flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-neutral-800 relative z-10"
+                style={{
+                  padding: 'clamp(1.5rem, 4vw, 3rem)',
+                }}
+              >
+                <motion.div variants={itemVariants} className="w-full"
+                  style={{ paddingRight: 'clamp(0.5rem, 2vw, 1rem)' }}
+                >
+                  <h2 
+                    className="font-bold text-white"
+                    style={{ 
+                      lineHeight: '1.2',
+                      wordSpacing: 'normal',
+                      fontSize: 'clamp(1.75rem, 5vw, 3rem)',
+                      marginBottom: 'clamp(1rem, 3vh, 1.5rem)',
+                    }}
+                  >
                     Get in Touch with Us
                   </h2>
-                  <p className="text-neutral-400 text-base leading-relaxed mb-8">
+                  <p 
+                    className="text-neutral-400 leading-relaxed"
+                    style={{
+                      fontSize: 'clamp(0.938rem, 2.5vw, 1rem)',
+                      marginBottom: 'clamp(1.5rem, 4vh, 2rem)',
+                    }}
+                  >
                     We&apos;re here to help. Whether you&apos;re interested in learning more about our services or need support, we&apos;re happy to assist you.
                   </p>
 
                   {/* Feature List */}
-                  <div className="space-y-4 mb-8">
+                  <div style={{ 
+                    marginBottom: 'clamp(1.5rem, 4vh, 2rem)',
+                    gap: 'clamp(0.75rem, 2vh, 1rem)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}>
                     {features.map((feature, index) => (
                       <motion.div
                         key={feature}
                         variants={itemVariants}
-                        className="flex items-center gap-3"
+                        className="flex items-center"
+                        style={{ gap: 'clamp(0.5rem, 2vw, 0.75rem)' }}
                       >
                         <div
-                          className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
+                          className="rounded-full flex items-center justify-center flex-shrink-0"
                           style={{
+                            width: 'clamp(20px, 5vw, 24px)',
+                            height: 'clamp(20px, 5vw, 24px)',
                             background: 'rgba(59, 130, 246, 0.2)',
                             border: '1px solid rgba(59, 130, 246, 0.4)',
                           }}
                         >
                           <svg
-                            className="w-3 h-3 text-blue-500"
+                            className="text-blue-500"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
+                            style={{
+                              width: 'clamp(12px, 3vw, 14px)',
+                              height: 'clamp(12px, 3vw, 14px)',
+                            }}
                           >
                             <path
                               strokeLinecap="round"
@@ -437,7 +488,14 @@ export const ContactForm = () => {
                             />
                           </svg>
                         </div>
-                        <span className="text-neutral-300 text-sm">{feature}</span>
+                        <span 
+                          className="text-neutral-300"
+                          style={{
+                            fontSize: 'clamp(0.813rem, 2vw, 0.875rem)',
+                          }}
+                        >
+                          {feature}
+                        </span>
                       </motion.div>
                     ))}
                   </div>
@@ -445,27 +503,85 @@ export const ContactForm = () => {
 
                 {/* Contact Details */}
                 <motion.div variants={itemVariants} className="mt-auto">
-                  <h3 className="text-neutral-200 font-semibold mb-4">General Contact Info</h3>
-                  <div className="space-y-3 text-sm">
+                  <h3 
+                    className="text-neutral-200 font-semibold"
+                    style={{
+                      fontSize: 'clamp(0.938rem, 2.5vw, 1.125rem)',
+                      marginBottom: 'clamp(0.75rem, 2vh, 1rem)',
+                    }}
+                  >
+                    General Contact Info
+                  </h3>
+                  <div style={{ 
+                    gap: 'clamp(0.5rem, 1.5vh, 0.75rem)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}>
                     <div>
-                      <span className="text-neutral-400">Phone: </span>
-                      <span className="text-neutral-300">+1-415-555-0199</span>
+                      <span 
+                        className="text-neutral-400"
+                        style={{ fontSize: 'clamp(0.813rem, 2vw, 0.875rem)' }}
+                      >
+                        Phone:{' '}
+                      </span>
+                      <span 
+                        className="text-neutral-300"
+                        style={{ fontSize: 'clamp(0.813rem, 2vw, 0.875rem)' }}
+                      >
+                        +1-415-555-0199
+                      </span>
                     </div>
                     <div>
-                      <span className="text-neutral-400">Email: </span>
-                      <span className="text-neutral-300">contact@innovatech.com</span>
+                      <span 
+                        className="text-neutral-400"
+                        style={{ fontSize: 'clamp(0.813rem, 2vw, 0.875rem)' }}
+                      >
+                        Email:{' '}
+                      </span>
+                      <span 
+                        className="text-neutral-300"
+                        style={{ fontSize: 'clamp(0.813rem, 2vw, 0.875rem)' }}
+                      >
+                        contact@innovatech.com
+                      </span>
                     </div>
                   </div>
                 </motion.div>
               </div>
 
               {/* Right Column - Contact Form */}
-              <div className="p-8 lg:p-12 relative">
-                <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+              <div className="relative"
+                style={{
+                  padding: 'clamp(1.5rem, 4vw, 3rem)',
+                }}
+              >
+                <form onSubmit={handleSubmit} className="relative z-10"
+                  style={{
+                    gap: 'clamp(1rem, 3vh, 1.5rem)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
                   {/* First Name and Last Name Row */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <motion.div variants={itemVariants} className="space-y-2">
-                      <label htmlFor="firstName" className="block text-sm text-neutral-300">
+                  <div className="grid grid-cols-1 sm:grid-cols-2"
+                    style={{
+                      gap: 'clamp(1rem, 3vw, 1.5rem)',
+                    }}
+                  >
+                    <motion.div variants={itemVariants}
+                      style={{
+                        gap: 'clamp(0.5rem, 1.5vh, 0.75rem)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                      }}
+                    >
+                      <label 
+                        htmlFor="firstName"
+                        className="block text-neutral-300"
+                        style={{
+                          fontSize: 'clamp(0.813rem, 2vw, 0.875rem)',
+                        }}
+                      >
                         First Name
                       </label>
                       <input
@@ -482,8 +598,14 @@ export const ContactForm = () => {
                           e.target.style.color = '#ffffff';
                         }}
                         placeholder="Albert"
-                        style={{ backgroundColor: '#262626', color: '#ffffff', background: '#262626' }}
-                        className={`w-full px-4 py-3 rounded-lg bg-neutral-800 border-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-all ${
+                        style={{ 
+                          backgroundColor: '#262626', 
+                          color: '#ffffff', 
+                          background: '#262626',
+                          padding: 'clamp(0.75rem, 2vw, 0.875rem) clamp(1rem, 3vw, 1.25rem)',
+                          fontSize: 'clamp(0.875rem, 2.2vw, 1rem)',
+                        }}
+                        className={`w-full rounded-lg bg-neutral-800 border-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-all ${
                           errors.firstName 
                             ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' 
                             : 'border-neutral-700 focus:border-blue-500/50 focus:ring-blue-500/20'
@@ -491,11 +613,31 @@ export const ContactForm = () => {
                         required
                       />
                       {errors.firstName && (
-                        <p className="text-red-400 text-xs mt-1">{errors.firstName}</p>
+                        <p 
+                          className="text-red-400"
+                          style={{
+                            fontSize: 'clamp(0.75rem, 1.8vw, 0.813rem)',
+                            marginTop: '0.25rem',
+                          }}
+                        >
+                          {errors.firstName}
+                        </p>
                       )}
                     </motion.div>
-                    <motion.div variants={itemVariants} className="space-y-2">
-                      <label htmlFor="lastName" className="block text-sm text-neutral-300">
+                    <motion.div variants={itemVariants}
+                      style={{
+                        gap: 'clamp(0.5rem, 1.5vh, 0.75rem)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                      }}
+                    >
+                      <label 
+                        htmlFor="lastName"
+                        className="block text-neutral-300"
+                        style={{
+                          fontSize: 'clamp(0.813rem, 2vw, 0.875rem)',
+                        }}
+                      >
                         Last Name
                       </label>
                       <input
@@ -512,8 +654,14 @@ export const ContactForm = () => {
                           e.target.style.color = '#ffffff';
                         }}
                         placeholder="Susanto"
-                        style={{ backgroundColor: '#262626', color: '#ffffff', background: '#262626' }}
-                        className={`w-full px-4 py-3 rounded-lg bg-neutral-800 border-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-all ${
+                        style={{ 
+                          backgroundColor: '#262626', 
+                          color: '#ffffff', 
+                          background: '#262626',
+                          padding: 'clamp(0.75rem, 2vw, 0.875rem) clamp(1rem, 3vw, 1.25rem)',
+                          fontSize: 'clamp(0.875rem, 2.2vw, 1rem)',
+                        }}
+                        className={`w-full rounded-lg bg-neutral-800 border-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-all ${
                           errors.lastName 
                             ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' 
                             : 'border-neutral-700 focus:border-blue-500/50 focus:ring-blue-500/20'
@@ -521,14 +669,34 @@ export const ContactForm = () => {
                         required
                       />
                       {errors.lastName && (
-                        <p className="text-red-400 text-xs mt-1">{errors.lastName}</p>
+                        <p 
+                          className="text-red-400"
+                          style={{
+                            fontSize: 'clamp(0.75rem, 1.8vw, 0.813rem)',
+                            marginTop: '0.25rem',
+                          }}
+                        >
+                          {errors.lastName}
+                        </p>
                       )}
                     </motion.div>
                   </div>
 
                   {/* Email Address */}
-                  <motion.div variants={itemVariants} className="space-y-2">
-                    <label htmlFor="email" className="block text-sm text-neutral-300">
+                  <motion.div variants={itemVariants}
+                    style={{
+                      gap: 'clamp(0.5rem, 1.5vh, 0.75rem)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }}
+                  >
+                    <label 
+                      htmlFor="email"
+                      className="block text-neutral-300"
+                      style={{
+                        fontSize: 'clamp(0.813rem, 2vw, 0.875rem)',
+                      }}
+                    >
                       Email Address
                     </label>
                     <input
@@ -545,8 +713,14 @@ export const ContactForm = () => {
                         e.target.style.color = '#ffffff';
                       }}
                       placeholder="albert.susanto@example.com"
-                      style={{ backgroundColor: '#262626', color: '#ffffff', background: '#262626' }}
-                      className={`w-full px-4 py-3 rounded-lg bg-neutral-800 border-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-all ${
+                      style={{ 
+                        backgroundColor: '#262626', 
+                        color: '#ffffff', 
+                        background: '#262626',
+                        padding: 'clamp(0.75rem, 2vw, 0.875rem) clamp(1rem, 3vw, 1.25rem)',
+                        fontSize: 'clamp(0.875rem, 2.2vw, 1rem)',
+                      }}
+                      className={`w-full rounded-lg bg-neutral-800 border-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-all ${
                         errors.email 
                           ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' 
                           : 'border-neutral-700 focus:border-blue-500/50 focus:ring-blue-500/20'
@@ -554,13 +728,33 @@ export const ContactForm = () => {
                       required
                     />
                     {errors.email && (
-                      <p className="text-red-400 text-xs mt-1">{errors.email}</p>
+                      <p 
+                        className="text-red-400"
+                        style={{
+                          fontSize: 'clamp(0.75rem, 1.8vw, 0.813rem)',
+                          marginTop: '0.25rem',
+                        }}
+                      >
+                        {errors.email}
+                      </p>
                     )}
                   </motion.div>
 
                   {/* Phone Number */}
-                  <motion.div variants={itemVariants} className="space-y-2">
-                    <label htmlFor="phone" className="block text-sm text-neutral-300">
+                  <motion.div variants={itemVariants}
+                    style={{
+                      gap: 'clamp(0.5rem, 1.5vh, 0.75rem)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }}
+                  >
+                    <label 
+                      htmlFor="phone"
+                      className="block text-neutral-300"
+                      style={{
+                        fontSize: 'clamp(0.813rem, 2vw, 0.875rem)',
+                      }}
+                    >
                       Phone Number
                     </label>
                     <input
@@ -576,9 +770,16 @@ export const ContactForm = () => {
                         e.target.style.background = '#262626';
                         e.target.style.color = '#ffffff';
                       }}
-                      placeholder="Enter phone number"
-                      style={{ backgroundColor: '#262626', color: '#ffffff', background: '#262626' }}
-                      className={`w-full px-4 py-3 rounded-lg bg-neutral-800 border-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-all ${
+                      placeholder="+1 (555) 123-4567"
+                      pattern="[\d\s\-\+\(\)]+"
+                      style={{ 
+                        backgroundColor: '#262626', 
+                        color: '#ffffff', 
+                        background: '#262626',
+                        padding: 'clamp(0.75rem, 2vw, 0.875rem) clamp(1rem, 3vw, 1.25rem)',
+                        fontSize: 'clamp(0.875rem, 2.2vw, 1rem)',
+                      }}
+                      className={`w-full rounded-lg bg-neutral-800 border-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-all ${
                         errors.phone 
                           ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' 
                           : 'border-neutral-700 focus:border-blue-500/50 focus:ring-blue-500/20'
@@ -586,13 +787,33 @@ export const ContactForm = () => {
                       required
                     />
                     {errors.phone && (
-                      <p className="text-red-400 text-xs mt-1">{errors.phone}</p>
+                      <p 
+                        className="text-red-400"
+                        style={{
+                          fontSize: 'clamp(0.75rem, 1.8vw, 0.813rem)',
+                          marginTop: '0.25rem',
+                        }}
+                      >
+                        {errors.phone}
+                      </p>
                     )}
                   </motion.div>
 
                   {/* Tell Us About Your Ideas and Needs */}
-                  <motion.div variants={itemVariants} className="space-y-2">
-                    <label htmlFor="ideas" className="block text-sm text-neutral-300">
+                  <motion.div variants={itemVariants}
+                    style={{
+                      gap: 'clamp(0.5rem, 1.5vh, 0.75rem)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }}
+                  >
+                    <label 
+                      htmlFor="ideas"
+                      className="block text-neutral-300"
+                      style={{
+                        fontSize: 'clamp(0.813rem, 2vw, 0.875rem)',
+                      }}
+                    >
                       Tell Us About Your Ideas and Needs <span className="text-blue-500">*</span>
                     </label>
                     <textarea
@@ -609,8 +830,14 @@ export const ContactForm = () => {
                       }}
                       placeholder="Write your ideas and needs..."
                       rows={5}
-                      style={{ backgroundColor: '#262626', color: '#ffffff', background: '#262626' }}
-                      className={`w-full px-4 py-3 rounded-lg bg-neutral-800 border-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-all resize-none ${
+                      style={{ 
+                        backgroundColor: '#262626', 
+                        color: '#ffffff', 
+                        background: '#262626',
+                        padding: 'clamp(0.75rem, 2vw, 0.875rem) clamp(1rem, 3vw, 1.25rem)',
+                        fontSize: 'clamp(0.875rem, 2.2vw, 1rem)',
+                      }}
+                      className={`w-full rounded-lg bg-neutral-800 border-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-all resize-none ${
                         errors.ideas 
                           ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' 
                           : 'border-neutral-700 focus:border-blue-500/50 focus:ring-blue-500/20'
@@ -618,77 +845,142 @@ export const ContactForm = () => {
                       required
                     />
                     {errors.ideas && (
-                      <p className="text-red-400 text-xs mt-1">{errors.ideas}</p>
+                      <p 
+                        className="text-red-400"
+                        style={{
+                          fontSize: 'clamp(0.75rem, 1.8vw, 0.813rem)',
+                          marginTop: '0.25rem',
+                        }}
+                      >
+                        {errors.ideas}
+                      </p>
                     )}
                   </motion.div>
 
                   {/* Checkbox and Submit Button Row */}
                   <motion.div
                     variants={itemVariants}
-                    className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4"
+                    className="flex flex-col sm:flex-row items-start sm:items-center justify-between"
+                    style={{
+                      gap: 'clamp(1rem, 3vw, 1.5rem)',
+                      paddingTop: 'clamp(0.5rem, 2vh, 1rem)',
+                    }}
                   >
-                    <div className="flex flex-col">
-                      <label className="flex items-center gap-3 cursor-pointer group">
-                        <div className="relative flex-shrink-0">
-                          <input
-                            type="checkbox"
-                            name="agreeToTerms"
-                            checked={formData.agreeToTerms}
-                            onChange={handleCheckboxChange}
-                            className="peer sr-only"
-                            required
-                          />
-                          <div
-                            className={`w-5 h-5 rounded border-2 bg-neutral-800 transition-all duration-200 peer-checked:bg-blue-600 peer-checked:border-blue-600 peer-focus:ring-2 peer-focus:ring-blue-500/50 peer-focus:ring-offset-2 peer-focus:ring-offset-neutral-900 cursor-pointer flex items-center justify-center ${
-                              errors.agreeToTerms ? 'border-red-500/50' : 'border-neutral-700'
-                            }`}
-                          >
-                            {formData.agreeToTerms && (
-                              <svg
-                                className="w-3.5 h-3.5 text-white"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={3}
-                                  d="M5 13l4 4L19 7"
-                                />
-                              </svg>
-                            )}
+                    <div className="flex flex-col w-full sm:w-auto items-center sm:items-start">
+                      <div className="w-full flex justify-center sm:justify-start"
+                        style={{
+                          paddingLeft: 'clamp(1rem, 4vw, 0px)',
+                          paddingRight: 'clamp(1rem, 4vw, 0px)',
+                        }}
+                      >
+                        <label className="flex items-start cursor-pointer group sm:justify-start"
+                          style={{ 
+                            gap: 'clamp(0.75rem, 3vw, 0.75rem)',
+                            maxWidth: '100%',
+                            width: 'fit-content',
+                            justifyContent: 'center',
+                          }}
+                        >
+                          <div className="relative shrink-0" style={{ 
+                            marginTop: '0.125rem',
+                          }}>
+                            <input
+                              type="checkbox"
+                              name="agreeToTerms"
+                              checked={formData.agreeToTerms}
+                              onChange={handleCheckboxChange}
+                              className="peer sr-only"
+                              required
+                            />
+                            <div
+                              className={`rounded border-2 bg-neutral-800 transition-all duration-200 peer-checked:bg-blue-600 peer-checked:border-blue-600 cursor-pointer flex items-center justify-center ${
+                                errors.agreeToTerms ? 'border-red-500/50' : 'border-neutral-700'
+                              }`}
+                              style={{
+                                width: 'clamp(18px, 4vw, 20px)',
+                                height: 'clamp(18px, 4vw, 20px)',
+                              }}
+                            >
+                              {formData.agreeToTerms && (
+                                <svg
+                                  className="text-white"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                  style={{
+                                    width: 'clamp(12px, 3vw, 14px)',
+                                    height: 'clamp(12px, 3vw, 14px)',
+                                  }}
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={3}
+                                    d="M5 13l4 4L19 7"
+                                  />
+                                </svg>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                        <span className="text-sm text-neutral-400 group-hover:text-neutral-300 transition-colors leading-tight">
-                          I agree to Fireside{' '}
-                          <a href="#" className="font-semibold text-white hover:text-blue-400 transition-colors">
-                            Terms of Use
-                          </a>{' '}
-                          and{' '}
-                          <a href="#" className="font-semibold text-white hover:text-blue-400 transition-colors">
-                            Privacy Policy
-                          </a>{' '}
-                          <span className="text-blue-500">*</span>
-                        </span>
-                      </label>
+                          <span 
+                            className="text-neutral-400 group-hover:text-neutral-300 transition-colors sm:text-left"
+                            style={{
+                              fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)',
+                              lineHeight: '1.5',
+                              textAlign: 'center',
+                              flex: 1,
+                              wordBreak: 'break-word',
+                              overflowWrap: 'break-word',
+                            }}
+                          >
+                            I agree to Fireside{' '}
+                            <a href="#" className="font-semibold text-white hover:text-blue-400 transition-colors">
+                              Terms of{' '}
+                              <span className="sm:hidden"><br /></span>
+                              Use
+                            </a>
+                            {' '}and{' '}
+                            <a href="#" className="font-semibold text-white hover:text-blue-400 transition-colors">
+                              Privacy Policy
+                            </a>
+                            {' '}
+                            <span className="text-blue-500">*</span>
+                          </span>
+                        </label>
+                      </div>
                       {errors.agreeToTerms && (
-                        <p className="text-red-400 text-xs mt-1 ml-8">{errors.agreeToTerms}</p>
+                        <p 
+                          className="text-red-400 sm:text-left"
+                          style={{
+                            fontSize: 'clamp(0.75rem, 1.8vw, 0.813rem)',
+                            marginTop: '0.25rem',
+                            textAlign: 'center',
+                            width: '100%',
+                          }}
+                        >
+                          {errors.agreeToTerms}
+                        </p>
                       )}
                     </div>
 
-                    <HoverBorderGradient
-                      as="button"
-                      type="submit"
-                      disabled={isSubmitting}
-                      containerClassName="rounded-full"
-                      className={`bg-black text-white px-8 py-3 text-base font-semibold ${
-                        isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                      }`}
-                      duration={1}
-                    >
-                      {isSubmitting ? 'Submitting...' : 'Submit'}
-                    </HoverBorderGradient>
+                    <div className="w-full sm:w-auto flex justify-center sm:justify-end">
+                      <HoverBorderGradient
+                        as="button"
+                        type="submit"
+                        disabled={isSubmitting}
+                        containerClassName="rounded-full"
+                        className={`bg-black text-white font-semibold ${
+                          isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                        }`}
+                        style={{
+                          padding: 'clamp(0.625rem, 2vw, 0.75rem) clamp(2rem, 5vw, 2.5rem)',
+                          fontSize: 'clamp(0.875rem, 2.2vw, 1rem)',
+                        }}
+                        duration={1}
+                      >
+                        {isSubmitting ? 'Submitting...' : 'Submit'}
+                      </HoverBorderGradient>
+                    </div>
                   </motion.div>
                 </form>
               </div>
