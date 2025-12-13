@@ -1,46 +1,10 @@
 'use client';
 
-import React, { useState, forwardRef } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
-import 'react-phone-number-input/style.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { HoverBorderGradient } from '@/components/ui/hover-border-gradient';
-
-// Custom input component for PhoneInput to ensure id and name attributes
-const CustomPhoneInput = forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
-  (props, ref) => {
-    return (
-      <input
-        ref={ref}
-        {...props}
-        id="phone"
-        name="phone"
-        autoComplete="tel"
-        style={{ 
-          backgroundColor: '#262626', 
-          color: '#ffffff',
-          background: '#262626',
-          backgroundImage: 'none'
-        }}
-        onFocus={(e) => {
-          e.target.style.backgroundColor = '#262626';
-          e.target.style.background = '#262626';
-          e.target.style.backgroundImage = 'none';
-          e.target.style.color = '#ffffff';
-        }}
-        onBlur={(e) => {
-          e.target.style.backgroundColor = '#262626';
-          e.target.style.background = '#262626';
-          e.target.style.color = '#ffffff';
-        }}
-      />
-    );
-  }
-);
-
-CustomPhoneInput.displayName = 'CustomPhoneInput';
 
 interface FormErrors {
   firstName?: string;
@@ -78,18 +42,6 @@ export const ContactForm = () => {
     validateField(name as keyof FormErrors, value);
   };
 
-  const handlePhoneChange = (value: string | undefined) => {
-    setFormData(prev => ({ ...prev, phone: value || '' }));
-    if (errors.phone) {
-      setErrors(prev => ({ ...prev, phone: undefined }));
-    }
-  };
-
-  const handlePhoneBlur = () => {
-    if (formData.phone) {
-      validateField('phone', formData.phone);
-    }
-  };
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({ ...prev, agreeToTerms: e.target.checked }));
@@ -138,10 +90,14 @@ export const ContactForm = () => {
       case 'phone':
         if (!value || (typeof value === 'string' && !value.trim())) {
           newErrors.phone = 'Phone number is required';
-        } else if (typeof value === 'string' && !isValidPhoneNumber(value)) {
-          newErrors.phone = 'Please enter a valid phone number';
-        } else {
-          delete newErrors.phone;
+        } else if (typeof value === 'string') {
+          // Basic phone validation (allows numbers, spaces, dashes, parentheses, plus)
+          const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+          if (!phoneRegex.test(value) || value.trim().length < 10) {
+            newErrors.phone = 'Please enter a valid phone number';
+          } else {
+            delete newErrors.phone;
+          }
         }
         break;
 
@@ -191,10 +147,14 @@ export const ContactForm = () => {
       }
     }
 
-    if (!formData.phone) {
+    if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
-    } else if (!isValidPhoneNumber(formData.phone)) {
-      newErrors.phone = 'Please enter a valid phone number';
+    } else {
+      // Basic phone validation (allows numbers, spaces, dashes, parentheses, plus)
+      const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+      if (!phoneRegex.test(formData.phone) || formData.phone.trim().length < 10) {
+        newErrors.phone = 'Please enter a valid phone number';
+      }
     }
 
     if (!formData.ideas.trim()) {
@@ -598,27 +558,33 @@ export const ContactForm = () => {
                     )}
                   </motion.div>
 
-                  {/* Phone Number with Country Selector */}
+                  {/* Phone Number */}
                   <motion.div variants={itemVariants} className="space-y-2">
                     <label htmlFor="phone" className="block text-sm text-neutral-300">
                       Phone Number
                     </label>
-                    <div className={`phone-input-wrapper ${errors.phone ? 'error' : ''}`}>
-                      <PhoneInput
-                        international
-                        defaultCountry="US"
-                        value={formData.phone}
-                        onChange={handlePhoneChange}
-                        onBlur={handlePhoneBlur}
-                        placeholder="Enter phone number"
-                        inputComponent={CustomPhoneInput}
-                        className={`w-full px-4 py-3 rounded-lg bg-neutral-700 border-2 text-neutral-300 placeholder-neutral-500 focus:outline-none focus:ring-1 transition-all ${
-                          errors.phone 
-                            ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' 
-                            : 'border-neutral-600 focus:border-blue-500/50 focus:ring-blue-500/20'
-                        }`}
-                      />
-                    </div>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      autoComplete="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      onFocus={(e) => {
+                        e.target.style.backgroundColor = '#262626';
+                        e.target.style.background = '#262626';
+                        e.target.style.color = '#ffffff';
+                      }}
+                      placeholder="Enter phone number"
+                      style={{ backgroundColor: '#262626', color: '#ffffff', background: '#262626' }}
+                      className={`w-full px-4 py-3 rounded-lg bg-neutral-800 border-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-all ${
+                        errors.phone 
+                          ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' 
+                          : 'border-neutral-700 focus:border-blue-500/50 focus:ring-blue-500/20'
+                      }`}
+                      required
+                    />
                     {errors.phone && (
                       <p className="text-red-400 text-xs mt-1">{errors.phone}</p>
                     )}
