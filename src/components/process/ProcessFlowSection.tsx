@@ -92,10 +92,10 @@ export const ProcessFlowSection = ({
   }, []);
 
   return (
-    <div id="work" className="relative w-full bg-black text-white font-sans">
-      
-      {/* Section Header */}
-      <div className="text-center py-20 px-4 sm:px-6 lg:px-8">
+    <div id="process" className="relative w-full py-20 px-4 sm:px-6 lg:px-8 bg-black text-white font-sans">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-16">
         {/* Badge */}
         <motion.div
           variants={itemVariants}
@@ -131,90 +131,132 @@ export const ProcessFlowSection = ({
         <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">
           {subtitle}
         </p>
-      </div>
+        </div>
 
       {/* --- 1. STICKY VIEWPORT (The Visuals) --- */}
-      <div className="sticky top-0 left-0 h-screen w-full flex flex-col lg:flex-row overflow-hidden z-10">
-        
-        {/* Left Pane: Text */}
-        <div className="relative flex-1 flex flex-col justify-center px-8 lg:px-24 bg-gradient-to-r from-black via-black to-transparent z-20">
-          <AnimatePresence mode="wait">
-            {steps.map((step, index) => (
-              activeStep === index && (
-                <div key={step.id} className="absolute w-full max-w-lg">
-                  {/* Fixed Title Anchor */}
-                  <motion.h3 
-                    variants={titleVariants}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
-                    className="text-blue-400 text-sm font-bold uppercase tracking-[0.2em] mb-6"
-                  >
-                    {String(index + 1).padStart(2, '0')}. {step.title.split('.')[0] || step.title}
-                  </motion.h3>
-                  {/* Description Group */}
+      <div className="sticky top-0 left-0 w-full flex flex-col lg:flex-row overflow-hidden z-10"
+        style={{ 
+          height: 'clamp(500px, 100vh, 100vh)',
+          maxHeight: '100vh',
+        }}
+      >
+        {/* Container with max-width inside sticky */}
+        <div className="w-full md:h-[600px] lg:h-[700px] h-[500px] max-w-7xl mx-auto px-4 sm:px-6 flex flex-col lg:flex-row"
+         
+        >
+          {/* Left Pane: Text */}
+          <div className="relative flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-8 xl:px-24 bg-gradient-to-r from-black via-black to-transparent z-20"
+            style={{ 
+              height: '100%',
+              maxHeight: '100%',
+              minHeight: 0,
+              overflow: 'hidden',
+            }}
+          >
+            <AnimatePresence mode="wait">
+              {steps.map((step, index) => (
+                activeStep === index && (
+                  <div key={step.id} className="absolute w-full max-w-lg">
+                    {/* Fixed Title Anchor */}
+                    <motion.h3 
+                      variants={titleVariants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      className="text-blue-400 text-sm font-bold uppercase tracking-[0.2em] mb-6"
+                    >
+                      {String(index + 1).padStart(2, '0')}. {step.title.split('.')[0] || step.title}
+                    </motion.h3>
+                    {/* Description Group */}
+                    <motion.div
+                      variants={contentVariants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                    >
+                      <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold leading-tight mb-6 text-white">
+                        {step.title}
+                      </h2>
+                      <p className="text-base sm:text-lg text-gray-400 leading-relaxed">
+                        {step.description}
+                      </p>
+                    </motion.div>
+                  </div>
+                )
+              ))}
+            </AnimatePresence>
+          </div>
+
+          {/* Right Pane: Images */}
+          <div className="flex-1 bg-[#0a0a0a] relative flex items-center justify-center overflow-hidden"
+            style={{ 
+              height: '100%',
+              maxHeight: '100%',
+              minHeight: 0,
+            }}
+          >
+            <AnimatePresence mode="popLayout">
+              {steps.map((step, index) => (
+                activeStep === index && (
                   <motion.div
+                    key={`img-${step.id}`}
                     variants={contentVariants}
                     initial="initial"
                     animate="animate"
                     exit="exit"
-                  >
-                    <h2 className="text-4xl lg:text-5xl font-semibold leading-tight mb-6 text-white">
-                      {step.title}
-                    </h2>
-                    <p className="text-lg text-gray-400 leading-relaxed">
-                      {step.description}
-                    </p>
-                  </motion.div>
-                </div>
-              )
-            ))}
-          </AnimatePresence>
-        </div>
-
-        {/* Right Pane: Images */}
-        <div className="flex-1 bg-[#0a0a0a] relative flex items-center justify-center overflow-hidden">
-          <AnimatePresence mode="popLayout">
-            {steps.map((step, index) => (
-              activeStep === index && (
-                <motion.div
-                  key={`img-${step.id}`}
-                  variants={contentVariants}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  className="absolute inset-0 flex items-center justify-center p-8 lg:p-16"
-                >
-                  {/* Image Card with Floating Animation */}
-                  <motion.div
-                    className="relative w-full h-full max-h-[60vh] rounded-3xl shadow-2xl overflow-hidden group"
-                    animate={{
-                      y: [0, -15, 0],
-                    }}
-                    transition={{
-                      duration: 5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 1,
+                    className="absolute inset-0 flex items-center justify-center"
+                    style={{ 
+                      padding: 'clamp(0.75rem, 2vw, 1.5rem)',
+                      maxHeight: '100%',
+                      overflow: 'hidden',
+                      minHeight: 0,
                     }}
                   >
+                    {/* Image Card with Floating Animation */}
+                    <motion.div
+                      className="relative rounded-3xl shadow-2xl overflow-hidden group"
+                      style={{ 
+                        width: '100%',
+                        maxWidth: '100%',
+                        height: 'clamp(180px, 25vh, 300px)',
+                        maxHeight: 'clamp(180px, 25vh, 300px)',
+                      }}
+                      animate={{
+                        y: [0, -15, 0],
+                      }}
+                      transition={{
+                        duration: 5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 1,
+                      }}
+                    >
                     {step.image || step.animation || (
-                      <div className="w-full h-full bg-gradient-to-br from-blue-500/20 to-blue-600/10 border border-gray-800/50 flex items-center justify-center">
-                        <div className="text-center p-8">
-                          <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-blue-500/20 border-2 border-blue-500/30 flex items-center justify-center">
-                            <span className="text-4xl font-bold text-blue-400">{index + 1}</span>
+                      <div className="w-full h-full bg-gradient-to-br from-blue-500/20 to-blue-600/10 border border-gray-800/50 flex items-center justify-center" 
+                        style={{ 
+                          height: '100%',
+                          maxHeight: '100%',
+                          overflow: 'hidden',
+                          minHeight: 0,
+                          maxWidth: '100%',
+                        }}
+                      >
+                        <div className="text-center p-4 sm:p-8">
+                          <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full bg-blue-500/20 border-2 border-blue-500/30 flex items-center justify-center">
+                            <span className="text-xl sm:text-3xl font-bold text-blue-400">{index + 1}</span>
                           </div>
-                          <p className="text-gray-400 text-sm">Step {index + 1} Image</p>
+                          <p className="text-gray-400 text-xs sm:text-sm">Step {index + 1} Image</p>
                         </div>
                       </div>
                     )}
                     {/* Decorative overlay for gloss effect */}
                     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500" />
                   </motion.div>
-                </motion.div>
-              )
-            ))}
-          </AnimatePresence>
+                  </motion.div>
+                )
+              ))}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
 
@@ -235,6 +277,7 @@ export const ProcessFlowSection = ({
         ))}
         {/* Extra spacer at bottom to allow full scroll out */}
         <div className="h-[50vh]" />
+      </div>
       </div>
     </div>
   );

@@ -28,8 +28,28 @@ export const createProcessStepImage = (type: 'discovery' | 'design' | 'developme
   const config = imageConfigs[type];
 
   return (
-    <div className={`w-full h-full rounded-2xl bg-gradient-to-br ${config.gradient} border border-gray-800/50 flex items-center justify-center`}>
-      <svg className={`w-48 h-48 ${config.color}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div 
+      className={`w-full h-full rounded-2xl bg-gradient-to-br ${config.gradient} border border-gray-800/50 flex items-center justify-center`}
+      style={{
+        maxHeight: '100%',
+        maxWidth: '100%',
+        overflow: 'hidden',
+        minHeight: 0,
+        minWidth: 0,
+      }}
+    >
+      <svg 
+        className={config.color} 
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
+        style={{
+          width: 'clamp(50px, 12vw, 120px)',
+          height: 'clamp(50px, 12vw, 120px)',
+          maxWidth: '100%',
+          maxHeight: '100%',
+        }}
+      >
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={config.svgPath} />
       </svg>
     </div>

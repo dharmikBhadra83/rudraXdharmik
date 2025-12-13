@@ -22,7 +22,7 @@ export const Navbar = () => {
 
   return (
     <div 
-      className="fixed left-0 right-0 z-50 transition-all duration-500"
+      className="fixed left-0 right-0 z-50 transition-all duration-500 w-full"
       style={{
         top: isScrolled ? '12px' : '0',
         paddingLeft: isScrolled ? '16px' : '0',
@@ -35,12 +35,9 @@ export const Navbar = () => {
         animate={{ 
           y: 0, 
           opacity: 1,
-          width: isScrolled ? '70%' : '100%',
-          marginLeft: isScrolled ? 'auto' : '0',
-          marginRight: isScrolled ? 'auto' : '0',
         }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="desktop-nav hidden lg:flex"
+        className={`hidden lg:flex ${isScrolled ? 'max-w-7xl mx-auto' : 'w-full'}`}
         style={{
           height: '72px',
           backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -49,11 +46,10 @@ export const Navbar = () => {
           borderRadius: isScrolled ? '20px' : '0px',
           border: isScrolled ? '1px solid rgba(50, 50, 50, 0.5)' : 'none',
           borderBottom: !isScrolled ? '1px solid rgba(50, 50, 50, 0.3)' : undefined,
-          display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          paddingLeft: '32px',
-          paddingRight: '32px',
+          paddingLeft: isScrolled ? 'clamp(1rem, 4vw, 2rem)' : 'clamp(1.5rem, 4vw, 2rem)',
+          paddingRight: isScrolled ? 'clamp(1rem, 4vw, 2rem)' : 'clamp(1.5rem, 4vw, 2rem)',
           position: 'relative',
           overflow: 'visible',
           fontFamily: 'Suisseintl, -apple-system, BlinkMacSystemFont, sans-serif',
@@ -89,19 +85,24 @@ export const Navbar = () => {
           </motion.a>
         </div>
 
-        {/* Navigation Links - Center (flex-1 for centering) */}
+        {/* Navigation Links - Center (absolutely centered) */}
         <div 
           style={{
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            flex: 1,
-            gap: '4px',
+            gap: 'clamp(2px, 0.5vw, 4px)',
             zIndex: 1,
+            maxWidth: 'calc(100% - 280px)',
+            flexWrap: 'nowrap',
           }}
         >
           {NAV_ITEMS.map((item, index) => {
-            const sectionId = item.toLowerCase() === 'work' ? 'work' : item.toLowerCase();
+            const sectionId = item.toLowerCase() === 'process' ? 'process' : item.toLowerCase();
             const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
               e.preventDefault();
               const element = document.getElementById(sectionId);
@@ -131,9 +132,9 @@ export const Navbar = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  paddingLeft: '14px',
-                  paddingRight: '14px',
-                  fontSize: '1rem',
+                  paddingLeft: 'clamp(8px, 1.5vw, 14px)',
+                  paddingRight: 'clamp(8px, 1.5vw, 14px)',
+                  fontSize: 'clamp(0.875rem, 1.2vw, 1rem)',
                   lineHeight: '1.5',
                   fontWeight: 500,
                   textDecoration: 'none',
@@ -141,6 +142,7 @@ export const Navbar = () => {
                   transition: 'color 0.2s',
                   cursor: 'pointer',
                   height: '100%',
+                  flexShrink: 0,
                 }}
               >
                 {item}
@@ -156,6 +158,7 @@ export const Navbar = () => {
             alignItems: 'center',
             flexShrink: 0,
             zIndex: 1,
+            minWidth: 'fit-content',
           }}
         >
           <HoverBorderGradient
@@ -175,7 +178,7 @@ export const Navbar = () => {
               }
             }}
             containerClassName="rounded-full"
-            className="bg-black text-white px-6 py-2.5 text-sm font-semibold"
+            className="bg-black text-white px-4 xl:px-6 py-2.5 text-xs xl:text-sm font-semibold whitespace-nowrap"
             duration={1}
           >
             Request a demo
@@ -183,24 +186,31 @@ export const Navbar = () => {
         </div>
       </motion.div>
 
-      {/* Mobile Navigation */}
-      <div className="lg:hidden" style={{ padding: isScrolled ? '0 16px' : '0' }}>
+      {/* Mobile Navigation - Hidden on desktop (lg and above) */}
+      <div 
+        className="lg:hidden w-full max-w-7xl mx-auto px-4 sm:px-6 block" 
+        style={{ 
+          paddingTop: isScrolled ? '12px' : '0', 
+          paddingBottom: isScrolled ? '12px' : '0',
+        }}
+      >
         <motion.div
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="flex"
           style={{
-            height: '64px',
+            height: 'clamp(56px, 8vw, 64px)',
             backgroundColor: 'rgba(0, 0, 0, 0.7)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
             borderRadius: isScrolled ? '20px' : '0px',
             border: isScrolled ? '1px solid rgba(50, 50, 50, 0.5)' : 'none',
             borderBottom: !isScrolled ? '1px solid rgba(50, 50, 50, 0.3)' : undefined,
-            display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            padding: '0 20px',
+            paddingLeft: 'clamp(1rem, 4vw, 1.25rem)',
+            paddingRight: 'clamp(1rem, 4vw, 1.25rem)',
           }}
         >
           {/* Logo */}
@@ -222,6 +232,9 @@ export const Navbar = () => {
               priority
               style={{
                 objectFit: 'contain',
+                filter: "brightness(0) invert(1)",
+                width: 'clamp(36px, 6vw, 40px)',
+                height: 'clamp(36px, 6vw, 40px)',
               }}
             />
           </motion.a>
@@ -239,7 +252,10 @@ export const Navbar = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              minWidth: '40px',
+              minHeight: '40px',
             }}
+            aria-label="Toggle menu"
           >
             <motion.svg 
               width="24"
@@ -286,7 +302,7 @@ export const Navbar = () => {
             {/* Mobile Nav Links */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
               {NAV_ITEMS.map((item, index) => {
-                const sectionId = item.toLowerCase() === 'work' ? 'work' : item.toLowerCase();
+                const sectionId = item.toLowerCase() === 'process' ? 'process' : item.toLowerCase();
                 const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
                   e.preventDefault();
                   setIsMenuOpen(false);
@@ -380,7 +396,7 @@ export const Navbar = () => {
                   }, 100);
                 }}
                 containerClassName="rounded-full w-full"
-                className="bg-black text-white px-6 py-2.5 text-sm font-semibold w-full"
+                className="bg-black text-white px-4 sm:px-6 py-2.5 text-xs sm:text-sm font-semibold w-full flex items-center justify-center"
                 duration={1}
               >
                 Request a demo

@@ -49,7 +49,7 @@ export const JOURNEY_STEPS = [
   }
 ];
 
-export const NAV_ITEMS = ['About', 'Services', 'Work', 'Contact'];
+export const NAV_ITEMS = ['About', 'Services', 'Process', 'Contact'];
 
 export const SOCIAL_LINKS = {
   linkedin: "https://www.linkedin.com/in/dharmik-bhanushali/",

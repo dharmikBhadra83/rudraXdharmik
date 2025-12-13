@@ -32,11 +32,11 @@ export const AboutSection = () => {
       className="relative w-full"
       style={{
         background: '#000000',
-        paddingTop: '100px',
-        paddingBottom: '100px',
+        paddingTop: 'clamp(3rem, 8vh, 6.25rem)',
+        paddingBottom: 'clamp(3rem, 8vh, 6.25rem)',
       }}
     >
-      <div className="w-full max-w-5xl mx-auto px-6 lg:px-8">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -47,9 +47,15 @@ export const AboutSection = () => {
           {/* Centered Badge */}
           <motion.div
             variants={itemVariants}
-            className="flex justify-center mb-16"
+            className="flex justify-center"
+            style={{ marginBottom: 'clamp(2rem, 5vh, 4rem)' }}
           >
-            <div className="relative overflow-hidden flex items-center gap-3 px-5 py-2.5 rounded-full border border-blue-500/40 bg-blue-500/10">
+            <div className="relative overflow-hidden flex items-center rounded-full border border-blue-500/40 bg-blue-500/10"
+              style={{
+                gap: 'clamp(8px, 2vw, 12px)',
+                padding: 'clamp(8px, 2vw, 10px) clamp(16px, 4vw, 20px)',
+              }}
+            >
               <motion.div
                 className="absolute inset-0"
                 style={{
@@ -59,14 +65,25 @@ export const AboutSection = () => {
                 transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, ease: 'linear' }}
               />
               <motion.span 
-                className="relative w-2 h-2 rounded-full bg-blue-500"
+                className="relative rounded-full bg-blue-500"
+                style={{
+                  width: 'clamp(6px, 1.5vw, 8px)',
+                  height: 'clamp(6px, 1.5vw, 8px)',
+                }}
                 animate={{
                   boxShadow: ['0 0 8px rgba(59, 130, 246, 0.8)', '0 0 16px rgba(59, 130, 246, 1)', '0 0 8px rgba(59, 130, 246, 0.8)'],
                   scale: [1, 1.2, 1],
                 }}
                 transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
               />
-              <span className="relative text-sm font-semibold text-blue-400">About Me</span>
+              <span 
+                className="relative font-semibold text-blue-400"
+                style={{
+                  fontSize: 'clamp(0.75rem, 2vw, 0.875rem)',
+                }}
+              >
+                About Me
+              </span>
             </div>
           </motion.div>
 
@@ -101,13 +118,13 @@ export const AboutSection = () => {
             <div 
               className="flex flex-col md:flex-row relative"
               style={{ 
-                height: '400px',
+                minHeight: 'clamp(300px, 50vh, 400px)',
                 borderBottom: '1px solid rgba(59, 130, 246, 0.3)',
               }}
             >
               {/* Horizontal line animation */}
               <motion.div
-                className="absolute bottom-0 left-0 right-0 h-[2px] pointer-events-none"
+                className="absolute bottom-0 left-0 right-0 h-[2px] pointer-events-none hidden md:block"
                 style={{
                   background: 'linear-gradient(90deg, transparent, #3b82f6, #60a5fa, transparent)',
                   boxShadow: '0 0 20px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.5)',
@@ -126,14 +143,15 @@ export const AboutSection = () => {
 
               {/* Image - 40% */}
               <div 
-                className="w-full md:w-[40%] h-full relative"
+                className="w-full md:w-[40%] relative border-b md:border-b-0 md:border-r"
                 style={{
-                  borderRight: '1px solid rgba(59, 130, 246, 0.3)',
+                  minHeight: 'clamp(200px, 30vh, 300px)',
+                  borderColor: 'rgba(59, 130, 246, 0.3)',
                 }}
               >
                 {/* Vertical line animation */}
                 <motion.div
-                  className="absolute top-0 right-0 w-[2px] pointer-events-none"
+                  className="absolute top-0 right-0 w-[2px] pointer-events-none hidden md:block"
                   style={{
                     height: '120px',
                     background: 'linear-gradient(180deg, transparent, #3b82f6, #60a5fa, transparent)',
@@ -159,8 +177,20 @@ export const AboutSection = () => {
               </div>
               
               {/* Text - 60% */}
-              <div className="w-full md:w-[60%] h-full flex items-center px-8 md:px-12">
-                <p className="text-white text-lg md:text-xl leading-relaxed font-light">
+              <div 
+                className="w-full md:w-[60%] flex items-center"
+                style={{
+                  padding: 'clamp(1.5rem, 4vw, 3rem)',
+                  minHeight: 'clamp(200px, 30vh, 300px)',
+                }}
+              >
+                <p 
+                  className="text-white leading-relaxed font-light"
+                  style={{
+                    fontSize: 'clamp(0.938rem, 2.5vw, 1.25rem)',
+                    lineHeight: 'clamp(1.6, 2vw, 1.8)',
+                  }}
+                >
                   Award-winning designer that won the awwward price in october 2021 for an IDE website that also focus on the UX to make the product more human-like and build it on design system.
                   <br /><br />
                   My goal before 30 is to impact 1,000,000 persons positively where I can make a change in their life.
@@ -171,11 +201,23 @@ export const AboutSection = () => {
             {/* Row 2: Text 60% | Image 40% */}
             <div 
               className="flex flex-col md:flex-row relative"
-              style={{ height: '400px' }}
+              style={{ minHeight: 'clamp(300px, 50vh, 400px)' }}
             >
               {/* Text - 60% */}
-              <div className="w-full md:w-[60%] h-full flex items-center px-8 md:px-12 order-2 md:order-1">
-                <p className="text-white text-lg md:text-xl leading-relaxed font-light">
+              <div 
+                className="w-full md:w-[60%] flex items-center order-2 md:order-1"
+                style={{
+                  padding: 'clamp(1.5rem, 4vw, 3rem)',
+                  minHeight: 'clamp(200px, 30vh, 300px)',
+                }}
+              >
+                <p 
+                  className="text-white leading-relaxed font-light"
+                  style={{
+                    fontSize: 'clamp(0.938rem, 2.5vw, 1.25rem)',
+                    lineHeight: 'clamp(1.6, 2vw, 1.8)',
+                  }}
+                >
                   If you see me not online or designing then you should know that I'm building something or ideating about a new startup that i have in mind.
                   <br /><br />
                   I truly want to leave something good in this life to be remember by.
@@ -186,14 +228,15 @@ export const AboutSection = () => {
               
               {/* Image - 40% */}
               <div 
-                className="w-full md:w-[40%] h-full order-1 md:order-2 relative"
+                className="w-full md:w-[40%] order-1 md:order-2 relative border-b md:border-b-0 md:border-l"
                 style={{
-                  borderLeft: '1px solid rgba(59, 130, 246, 0.3)',
+                  minHeight: 'clamp(200px, 30vh, 300px)',
+                  borderColor: 'rgba(59, 130, 246, 0.3)',
                 }}
               >
                 {/* Vertical line animation (left side for second row) */}
                 <motion.div
-                  className="absolute top-0 left-0 w-[2px] pointer-events-none"
+                  className="absolute top-0 left-0 w-[2px] pointer-events-none hidden md:block"
                   style={{
                     height: '120px',
                     background: 'linear-gradient(180deg, transparent, #3b82f6, #60a5fa, transparent)',

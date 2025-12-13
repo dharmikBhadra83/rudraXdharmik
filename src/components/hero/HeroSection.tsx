@@ -38,8 +38,8 @@ export const HeroSection = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: '120px',
-        paddingBottom: '80px',
+        paddingTop: 'clamp(100px, 12vh, 120px)',
+        paddingBottom: 'clamp(3rem, 8vh, 5rem)',
       }}
     >
       {/* Dark Background */}
@@ -75,8 +75,10 @@ export const HeroSection = () => {
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="absolute top-1/3 right-1/4 w-[500px] h-[500px] rounded-full blur-3xl pointer-events-none"
+        className="absolute top-1/3 right-1/4 rounded-full blur-3xl pointer-events-none"
         style={{
+          width: 'clamp(200px, 40vw, 500px)',
+          height: 'clamp(200px, 40vw, 500px)',
           background: 'radial-gradient(circle, rgba(59, 130, 246, 0.25), transparent 70%)',
         }}
       />
@@ -91,15 +93,17 @@ export const HeroSection = () => {
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="absolute bottom-1/3 left-1/4 w-[400px] h-[400px] rounded-full blur-3xl pointer-events-none"
+        className="absolute bottom-1/3 left-1/4 rounded-full blur-3xl pointer-events-none"
         style={{
+          width: 'clamp(150px, 35vw, 400px)',
+          height: 'clamp(150px, 35vw, 400px)',
           background: 'radial-gradient(circle, rgba(139, 92, 246, 0.2), transparent 70%)',
         }}
       />
 
       {/* Content Container - Centered with Flexbox */}
       <div 
-        className="relative z-10 w-full max-w-5xl mx-auto px-6 lg:px-8"
+        className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         style={{
           display: 'flex',
           flexDirection: 'column',
@@ -122,18 +126,19 @@ export const HeroSection = () => {
           {/* Badge - Available for Projects */}
           <motion.div
             variants={itemVariants}
-            className="relative overflow-hidden group mb-12 mx-auto"
+            className="relative overflow-hidden group mx-auto"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '12px',
-              padding: '10px 20px',
+              gap: 'clamp(8px, 2vw, 12px)',
+              padding: 'clamp(8px, 2vw, 10px) clamp(16px, 4vw, 20px)',
               borderRadius: '9999px',
               border: '1px solid rgba(59, 130, 246, 0.4)',
               backgroundColor: 'rgba(59, 130, 246, 0.08)',
               backdropFilter: 'blur(10px)',
               maxWidth: 'fit-content',
+              marginBottom: 'clamp(2rem, 5vh, 3rem)',
             }}
           >
             {/* Shining sweep effect */}
@@ -157,8 +162,8 @@ export const HeroSection = () => {
             <motion.span 
               className="relative rounded-full"
               style={{
-                width: '8px',
-                height: '8px',
+                width: 'clamp(6px, 1.5vw, 8px)',
+                height: 'clamp(6px, 1.5vw, 8px)',
                 flexShrink: 0,
                 background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
                 boxShadow: '0 0 8px rgba(59, 130, 246, 0.8)',
@@ -182,7 +187,7 @@ export const HeroSection = () => {
             <span 
               className="relative text-center"
               style={{
-                fontSize: 'clamp(0.813rem, 1.5vw, 0.938rem)',
+                fontSize: 'clamp(0.75rem, 2vw, 0.938rem)',
                 fontWeight: 600,
                 background: 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)',
                 WebkitBackgroundClip: 'text',
@@ -197,20 +202,21 @@ export const HeroSection = () => {
 
           {/* Main Heading with Letter-by-Letter Animation */}
           <div 
-            className="mb-10"
             style={{
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '8px',
+              gap: 'clamp(4px, 1vw, 8px)',
+              marginBottom: 'clamp(1.5rem, 4vh, 2.5rem)',
             }}
           >
             {/* First Line - White */}
             <motion.h1 
               className="font-bold leading-tight text-center"
               style={{
-                fontSize: 'clamp(2.5rem, 8vw, 5.5rem)',
+                fontSize: 'clamp(2rem, 6vw, 5.5rem)',
                 letterSpacing: '-0.02em',
+                lineHeight: '1.1',
               }}
             >
               <span
@@ -244,8 +250,9 @@ export const HeroSection = () => {
             <motion.h1 
               className="font-bold leading-tight text-center"
               style={{
-                fontSize: 'clamp(2.5rem, 8vw, 5.5rem)',
+                fontSize: 'clamp(2rem, 6vw, 5.5rem)',
                 letterSpacing: '-0.02em',
+                lineHeight: '1.1',
               }}
             >
               <motion.span 
@@ -306,9 +313,9 @@ export const HeroSection = () => {
           <motion.div
             variants={itemVariants}
             style={{
-              width: '80px',
+              width: 'clamp(60px, 15vw, 80px)',
               height: '2px',
-              marginBottom: '48px',
+              marginBottom: 'clamp(2rem, 5vh, 3rem)',
               background: 'linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.6), transparent)',
               borderRadius: '2px',
             }}
@@ -319,16 +326,16 @@ export const HeroSection = () => {
             variants={itemVariants}
             className="text-center"
             style={{
-              fontSize: 'clamp(1.063rem, 2vw, 1.5rem)',
+              fontSize: 'clamp(0.938rem, 2.5vw, 1.5rem)',
               maxWidth: '900px',
-              lineHeight: '1.8',
+              lineHeight: 'clamp(1.6, 2vw, 1.8)',
               color: '#b3b3b3',
               fontWeight: 400,
               letterSpacing: '0.005em',
               fontFamily: 'Georgia, Cambria, "Times New Roman", Times, serif',
               fontStyle: 'italic',
-              padding: '0 20px',
-              marginBottom: '64px',
+              padding: '0 clamp(1rem, 4vw, 1.25rem)',
+              marginBottom: 'clamp(2.5rem, 6vh, 4rem)',
             }}
           >
             Your technical co-pilot for transforming early concepts
@@ -349,10 +356,12 @@ export const HeroSection = () => {
             style={{
               display: 'flex',
               flexDirection: 'row',
-              gap: '16px',
+              gap: 'clamp(12px, 3vw, 16px)',
               justifyContent: 'center',
               alignItems: 'center',
               flexWrap: 'wrap',
+              width: '100%',
+              padding: '0 clamp(1rem, 4vw, 0)',
             }}
           >
             <PillButton 
