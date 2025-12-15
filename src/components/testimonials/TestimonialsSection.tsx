@@ -3,38 +3,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { BackgroundRippleEffect } from '@/components/ui/background-ripple-effect';
+import { TESTIMONIALS_CONTENT } from '@/constants';
 
 interface Testimonial {
   id: string;
   name: string;
   title: string;
+  company?: string;
+  companyUrl?: string;
   quote: string;
   avatar: string;
 }
 
-const testimonials: Testimonial[] = [
-  {
-    id: '1',
-    name: 'Sarah Johnson',
-    title: 'Small Business Owner',
-    quote: "Since integrating this solution into our workflow, we've experienced a significant improvement in efficiency and collaboration.",
-    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah',
-  },
-  {
-    id: '2',
-    name: 'David Patel',
-    title: 'Project Manager',
-    quote: "I've tested numerous options in this category, but one stands out for its intuitive design and comprehensive functionality.",
-    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=David',
-  },
-  {
-    id: '3',
-    name: 'Emily Carter',
-    title: 'Operations Manager',
-    quote: "The tool we've adopted has surpassed our expectations, providing invaluable insights and support as our business continues to grow.",
-    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Emily',
-  },
-];
+const testimonials: Testimonial[] = TESTIMONIALS_CONTENT.testimonials;
 
 export const TestimonialsSection = () => {
   const containerVariants = {
@@ -157,7 +138,7 @@ export const TestimonialsSection = () => {
               marginBottom: 'clamp(1rem, 2vh, 1.5rem)',
             }}
           >
-            What people say
+            {TESTIMONIALS_CONTENT.heading}
           </motion.h2>
           <motion.p
             variants={titleVariants}
@@ -167,7 +148,7 @@ export const TestimonialsSection = () => {
               fontSize: 'clamp(0.938rem, 2.5vw, 1.125rem)',
             }}
           >
-            Discover what our satisfied customers have to say about their experiences with our products/services.
+            {TESTIMONIALS_CONTENT.subheading}
           </motion.p>
         </motion.div>
 
@@ -177,7 +158,7 @@ export const TestimonialsSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 md:grid-cols-2"
           style={{
             gap: 'clamp(1.5rem, 4vw, 2rem)',
             marginTop: 'clamp(2rem, 5vh, 4rem)',
@@ -236,6 +217,23 @@ export const TestimonialsSection = () => {
                       }}
                     >
                       {testimonial.title}
+                      {testimonial.company && (
+                        <>
+                          <br />
+                          {testimonial.companyUrl ? (
+                            <a
+                              href={testimonial.companyUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-gray-500 hover:text-blue-400 transition-colors"
+                            >
+                              {testimonial.company}
+                            </a>
+                          ) : (
+                            <span className="text-gray-500">{testimonial.company}</span>
+                          )}
+                        </>
+                      )}
                     </p>
                   </div>
                 </div>
@@ -247,6 +245,7 @@ export const TestimonialsSection = () => {
                     fontFamily: 'sans-serif',
                     fontSize: 'clamp(0.875rem, 2.2vw, 1rem)',
                     lineHeight: 'clamp(1.5, 2vw, 1.75)',
+                    whiteSpace: 'pre-line',
                   }}
                 >
                   {testimonial.quote}

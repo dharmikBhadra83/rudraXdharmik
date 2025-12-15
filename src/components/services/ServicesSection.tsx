@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { SERVICES_CONTENT } from '@/constants';
 
 interface Service {
   icon: React.ReactNode;
@@ -8,68 +9,42 @@ interface Service {
   description: string;
 }
 
-const services: Service[] = [
-  {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="2" y="2" width="20" height="20" rx="2" />
-        <path d="M8 8h8M8 12h8M8 16h4" />
-      </svg>
-    ),
-    title: 'Web App development',
-    description: "We'll build you a website that's so good, it'll make all the other websites jealous. Trust me, not kidding.",
-  },
-  {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" />
-        <path d="M2 17l10 5 10-5" />
-        <path d="M2 12l10 5 10-5" />
-      </svg>
-    ),
-    title: 'Web Design',
-    description: "Your website will be so beautiful, you'll want to frame it and hang it on your wall (but please don't).",
-  },
-  {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M5 12l14 0" />
-        <path d="M12 5l7 7-7 7" />
-      </svg>
-    ),
-    title: 'Deployments and Hosting',
-    description: 'Get your website out there in the world, where it belongs, with our lightning-fast deployment services.',
-  },
-  {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="12" cy="12" r="3" />
-        <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24" />
-      </svg>
-    ),
-    title: 'Maintenance',
-    description: 'We keep your website running like a well-oiled machine. From optimizing performance to ensuring security, we\'ve got you covered',
-  },
-  {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="2" y="3" width="20" height="14" rx="2" />
-        <path d="M8 21h8M12 17v4" />
-      </svg>
-    ),
-    title: 'Full-Stack Development',
-    description: 'Take your website to the next level with our full-stack development services. We\'ve got all the skills to make your vision a reality.',
-  },
-  {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <polyline points="20 6 9 17 4 12" />
-      </svg>
-    ),
-    title: 'And everything else',
-    description: 'Ecommerce, Landing pages, Back-end heavy, Dashboards. You name it, we\'ve done it AND we\'ll do it for you.',
-  },
-];
+// Icon mapping for services
+const getServiceIcon = (index: number) => {
+  const icons = [
+    <svg key={0} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <rect x="2" y="2" width="20" height="20" rx="2" />
+      <path d="M8 8h8M8 12h8M8 16h4" />
+    </svg>,
+    <svg key={1} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M12 2L2 7l10 5 10-5-10-5z" />
+      <path d="M2 17l10 5 10-5" />
+      <path d="M2 12l10 5 10-5" />
+    </svg>,
+    <svg key={2} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M5 12l14 0" />
+      <path d="M12 5l7 7-7 7" />
+    </svg>,
+    <svg key={3} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="12" cy="12" r="3" />
+      <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24" />
+    </svg>,
+    <svg key={4} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <rect x="2" y="3" width="20" height="14" rx="2" />
+      <path d="M8 21h8M12 17v4" />
+    </svg>,
+    <svg key={5} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>,
+  ];
+  return icons[index % icons.length];
+};
+
+const services: Service[] = SERVICES_CONTENT.services.map((service, index) => ({
+  icon: getServiceIcon(index),
+  title: service.title,
+  description: service.description,
+}));
 
 export const ServicesSection = () => {
   
@@ -185,7 +160,7 @@ export const ServicesSection = () => {
           </motion.div>
 
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-white">
-            We handle just about everything!
+            {SERVICES_CONTENT.heading}
           </h2>
           
        
@@ -256,7 +231,10 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
           </h3>
 
           {/* Description */}
-          <p className="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+          <p 
+            className="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors duration-300"
+            style={{ whiteSpace: 'pre-line' }}
+          >
             {service.description}
           </p>
         </div>

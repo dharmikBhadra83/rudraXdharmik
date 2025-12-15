@@ -181,7 +181,7 @@ export const Navbar = () => {
             className="bg-black text-white px-4 xl:px-6 py-2.5 text-xs xl:text-sm font-semibold whitespace-nowrap"
             duration={1}
           >
-            Request a demo
+            Book call
           </HoverBorderGradient>
         </div>
       </motion.div>
@@ -396,10 +396,14 @@ export const Navbar = () => {
                   }, 100);
                 }}
                 containerClassName="rounded-full w-full"
-                className="bg-black text-white px-4 sm:px-6 py-2.5 text-xs sm:text-sm font-semibold w-full flex items-center justify-center"
+                className="bg-black text-white font-semibold w-full flex items-center justify-center"
+                style={{
+                  padding: 'clamp(10px, 2vw, 12px) clamp(16px, 4vw, 24px)',
+                  fontSize: 'clamp(0.813rem, 2vw, 0.875rem)',
+                }}
                 duration={1}
               >
-                Request a demo
+                Book call
               </HoverBorderGradient>
             </motion.div>
           </div>

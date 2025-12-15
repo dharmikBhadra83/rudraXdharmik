@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { HoverBorderGradient } from '@/components/ui/hover-border-gradient';
+import { CONTACT_CONTENT } from '@/constants';
 
 interface FormErrors {
   firstName?: string;
@@ -302,13 +303,7 @@ export const ContactForm = () => {
     },
   };
 
-  const features = [
-    'Reliable Delivery',
-    'Comprehensive Token & Digest',
-    'Customizable Notifications',
-    'Real-Time Updates',
-    'Seamless Integration',
-  ];
+  const features = CONTACT_CONTENT.features;
 
   return (
     <>
@@ -435,7 +430,7 @@ export const ContactForm = () => {
                       marginBottom: 'clamp(1rem, 3vh, 1.5rem)',
                     }}
                   >
-                    Get in Touch with Us
+                    {CONTACT_CONTENT.heading}
                   </h2>
                   <p 
                     className="text-neutral-400 leading-relaxed"
@@ -444,7 +439,7 @@ export const ContactForm = () => {
                       marginBottom: 'clamp(1.5rem, 4vh, 2rem)',
                     }}
                   >
-                    We&apos;re here to help. Whether you&apos;re interested in learning more about our services or need support, we&apos;re happy to assist you.
+                    {CONTACT_CONTENT.subheading}
                   </p>
 
                   {/* Feature List */}
@@ -510,7 +505,7 @@ export const ContactForm = () => {
                       marginBottom: 'clamp(0.75rem, 2vh, 1rem)',
                     }}
                   >
-                    General Contact Info
+                    Contact Info
                   </h3>
                   <div style={{ 
                     gap: 'clamp(0.5rem, 1.5vh, 0.75rem)',
@@ -524,12 +519,13 @@ export const ContactForm = () => {
                       >
                         Phone:{' '}
                       </span>
-                      <span 
-                        className="text-neutral-300"
+                      <a
+                        href={`tel:${CONTACT_CONTENT.contactInfo.phone.replace(/\s/g, '')}`}
+                        className="text-neutral-300 hover:text-blue-400 transition-colors"
                         style={{ fontSize: 'clamp(0.813rem, 2vw, 0.875rem)' }}
                       >
-                        +1-415-555-0199
-                      </span>
+                        {CONTACT_CONTENT.contactInfo.phone}
+                      </a>
                     </div>
                     <div>
                       <span 
@@ -538,12 +534,13 @@ export const ContactForm = () => {
                       >
                         Email:{' '}
                       </span>
-                      <span 
-                        className="text-neutral-300"
+                      <a
+                        href={`mailto:${CONTACT_CONTENT.contactInfo.email}`}
+                        className="text-neutral-300 hover:text-blue-400 transition-colors"
                         style={{ fontSize: 'clamp(0.813rem, 2vw, 0.875rem)' }}
                       >
-                        contact@innovatech.com
-                      </span>
+                        {CONTACT_CONTENT.contactInfo.email}
+                      </a>
                     </div>
                   </div>
                 </motion.div>
@@ -933,14 +930,14 @@ export const ContactForm = () => {
                               overflowWrap: 'break-word',
                             }}
                           >
-                            I agree to Fireside{' '}
-                            <a href="#" className="font-semibold text-white hover:text-blue-400 transition-colors">
+                            I agree to Rudrx{' '}
+                            <a href="/terms" className="font-semibold text-white hover:text-blue-400 transition-colors">
                               Terms of{' '}
                               <span className="sm:hidden"><br /></span>
                               Use
                             </a>
                             {' '}and{' '}
-                            <a href="#" className="font-semibold text-white hover:text-blue-400 transition-colors">
+                            <a href="/privacy" className="font-semibold text-white hover:text-blue-400 transition-colors">
                               Privacy Policy
                             </a>
                             {' '}

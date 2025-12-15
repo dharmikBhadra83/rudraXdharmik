@@ -2,10 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { PillButton } from '@/components/common/PillButton';
+import { HERO_CONTENT } from '@/constants';
 
 export const HeroSection = () => {
-  const heading1 = "Build Your MVP";
-  const heading2 = "Faster Than Expected";
+  const heading1 = HERO_CONTENT.heading.line1;
+  const heading2 = HERO_CONTENT.heading.line2;
   
   // Animation variants
   const containerVariants = {
@@ -196,7 +197,7 @@ export const HeroSection = () => {
                 lineHeight: 1.2,
               }}
             >
-              Available for new projects
+              {HERO_CONTENT.badge}
             </span>
           </motion.div>
 
@@ -208,15 +209,20 @@ export const HeroSection = () => {
               alignItems: 'center',
               gap: 'clamp(4px, 1vw, 8px)',
               marginBottom: 'clamp(1.5rem, 4vh, 2.5rem)',
+              width: '100%',
+              overflow: 'hidden',
             }}
           >
             {/* First Line - White */}
             <motion.h1 
               className="font-bold leading-tight text-center"
               style={{
-                fontSize: 'clamp(2rem, 6vw, 5.5rem)',
+                fontSize: 'clamp(1.75rem, 5vw, 5.5rem)',
                 letterSpacing: '-0.02em',
                 lineHeight: '1.1',
+                whiteSpace: 'nowrap',
+                width: '100%',
+                overflow: 'hidden',
               }}
             >
               <span
@@ -250,9 +256,12 @@ export const HeroSection = () => {
             <motion.h1 
               className="font-bold leading-tight text-center"
               style={{
-                fontSize: 'clamp(2rem, 6vw, 5.5rem)',
+                fontSize: 'clamp(1.75rem, 5vw, 5.5rem)',
                 letterSpacing: '-0.02em',
                 lineHeight: '1.1',
+                whiteSpace: 'nowrap',
+                width: '100%',
+                overflow: 'hidden',
               }}
             >
               <motion.span 
@@ -307,6 +316,20 @@ export const HeroSection = () => {
               padding: '0 20px',
             }}
           >
+            <p
+              style={{
+                fontSize: 'clamp(0.938rem, 2.5vw, 1.5rem)',
+                maxWidth: '900px',
+                lineHeight: 'clamp(1.6, 2vw, 1.8)',
+                color: '#b3b3b3',
+                fontWeight: 400,
+                letterSpacing: '0.005em',
+                fontFamily: 'sans-serif',
+                fontStyle: 'normal',
+              }}
+            >
+              {HERO_CONTENT.subheading}
+            </p>
           </motion.div>
 
           {/* Decorative Divider */}
@@ -321,34 +344,6 @@ export const HeroSection = () => {
             }}
           />
 
-          {/* Supporting Text - Italic Serif Style */}
-          <motion.p
-            variants={itemVariants}
-            className="text-center"
-            style={{
-              fontSize: 'clamp(0.938rem, 2.5vw, 1.5rem)',
-              maxWidth: '900px',
-              lineHeight: 'clamp(1.6, 2vw, 1.8)',
-              color: '#b3b3b3',
-              fontWeight: 400,
-              letterSpacing: '0.005em',
-              fontFamily: 'Georgia, Cambria, "Times New Roman", Times, serif',
-              fontStyle: 'italic',
-              padding: '0 clamp(1rem, 4vw, 1.25rem)',
-              marginBottom: 'clamp(2.5rem, 6vh, 4rem)',
-            }}
-          >
-            Your technical co-pilot for transforming early concepts
-            <br />
-            into working products that are{' '}
-            <span style={{ 
-              color: '#ffffff', 
-              fontWeight: 500,
-              fontStyle: 'normal',
-            }}>
-              clear, simple, and ready for users
-            </span>.
-          </motion.p>
 
           {/* CTA Buttons with Clear Spacing */}
           <motion.div 
@@ -365,16 +360,16 @@ export const HeroSection = () => {
             }}
           >
             <PillButton 
-              href="#contact" 
-              variant="secondary"
-            >
-              Request a demo
-            </PillButton>
-            <PillButton 
-              href="#signup" 
+              href={HERO_CONTENT.cta.primary.href} 
               variant="primary"
             >
-              Sign up for free
+              {HERO_CONTENT.cta.primary.text}
+            </PillButton>
+            <PillButton 
+              href={HERO_CONTENT.cta.secondary.href} 
+              variant="secondary"
+            >
+              {HERO_CONTENT.cta.secondary.text}
             </PillButton>
           </motion.div>
         </motion.div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { ABOUT_CONTENT } from '@/constants';
 
 export const AboutSection = () => {
   const containerVariants = {
@@ -82,7 +83,7 @@ export const AboutSection = () => {
                   fontSize: 'clamp(0.75rem, 2vw, 0.875rem)',
                 }}
               >
-                About Me
+                {ABOUT_CONTENT.badge}
               </span>
             </div>
           </motion.div>
@@ -189,11 +190,10 @@ export const AboutSection = () => {
                   style={{
                     fontSize: 'clamp(0.938rem, 2.5vw, 1.25rem)',
                     lineHeight: 'clamp(1.6, 2vw, 1.8)',
+                    whiteSpace: 'pre-line',
                   }}
                 >
-                  Award-winning designer that won the awwward price in october 2021 for an IDE website that also focus on the UX to make the product more human-like and build it on design system.
-                  <br /><br />
-                  My goal before 30 is to impact 1,000,000 persons positively where I can make a change in their life.
+                  {ABOUT_CONTENT.primary.text}
                 </p>
               </div>
             </div>
@@ -216,13 +216,10 @@ export const AboutSection = () => {
                   style={{
                     fontSize: 'clamp(0.938rem, 2.5vw, 1.25rem)',
                     lineHeight: 'clamp(1.6, 2vw, 1.8)',
+                    whiteSpace: 'pre-line',
                   }}
                 >
-                  If you see me not online or designing then you should know that I'm building something or ideating about a new startup that i have in mind.
-                  <br /><br />
-                  I truly want to leave something good in this life to be remember by.
-                  <br /><br />
-                  Currently, I'm making this post just so that I step away a bit from work and my problems to remember where i have came from.
+                  {ABOUT_CONTENT.lower.text}
                 </p>
               </div>
               

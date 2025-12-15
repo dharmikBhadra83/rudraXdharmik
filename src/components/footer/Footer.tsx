@@ -1,23 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { SOCIAL_LINKS } from '@/constants';
+import { SOCIAL_LINKS, FOOTER_CONTENT } from '@/constants';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
-    company: [
-      { label: 'About', href: '#about' },
-      { label: 'Services', href: '#services' },
-      { label: 'Work', href: '#work' },
-      { label: 'Contact', href: '#contact' },
-    ],
-    legal: [
-      { label: 'Privacy Policy', href: '#' },
-      { label: 'Terms of Service', href: '#' },
-      { label: 'Cookie Policy', href: '#' },
-    ],
+    company: FOOTER_CONTENT.companyLinks,
+    legal: FOOTER_CONTENT.legalLinks,
   };
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -65,7 +56,7 @@ export const Footer = () => {
                   marginBottom: 'clamp(0.75rem, 2vh, 1rem)',
                 }}
               >
-                Dharmik
+                {FOOTER_CONTENT.brand}
               </h3>
               <p 
                 className="text-neutral-400 leading-relaxed"
@@ -75,8 +66,7 @@ export const Footer = () => {
                   marginBottom: 'clamp(1rem, 3vh, 1.5rem)',
                 }}
               >
-                Building MVPs and SaaS products that solve real problems. 
-                Let&apos;s bring your vision to life.
+                {FOOTER_CONTENT.subheading}
               </p>
               {/* Social Links */}
               <div className="flex" style={{ gap: 'clamp(0.75rem, 2vw, 1rem)' }}>
@@ -244,7 +234,7 @@ export const Footer = () => {
                 fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)',
               }}
             >
-              © {currentYear} Dharmik. All rights reserved.
+              © {currentYear} {FOOTER_CONTENT.brand}. All rights reserved.
             </p>
             <p 
               className="text-neutral-500"
