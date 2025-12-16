@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rudrx.dev | Custom SaaS, ERP Systems & Workflow Automation | Rudrax Techlabs | Rudrax",
+  title: "Rudrx.dev | Custom SaaS, ERP Systems & Workflow Automation | Rudrax Techlabs",
   description: "Rudrx.dev (Rudrax Techlabs) builds custom SaaS platforms, ERP systems, and workflow automations for businesses. We design software that actually works—focused on clarity, control, and efficiency. Expert in custom ERP development, SaaS products, internal tools, and business automation.",
   keywords: [
     "Rudrx.dev",
