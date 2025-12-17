@@ -21,7 +21,7 @@ export default function Home() {
     <div className="min-h-screen bg-black text-white">
       <Navbar />
       <HeroSection />
-      <AboutSection />
+      {/* <AboutSection /> */}
       {/* <JourneySection /> */}
       {/* <DifferentiatorSection /> */}
       <ServicesSection />
