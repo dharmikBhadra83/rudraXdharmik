@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import nodemailer from 'nodemailer';
 
 export async function POST(request: NextRequest) {
   try {
@@ -26,7 +24,23 @@ export async function POST(request: NextRequest) {
     }
 
     // Get recipient email from environment variable
-    const recipientEmail = process.env.CONTACT_FORM_EMAIL || 'zalajaydeep3110@gmail.com';
+    const recipientEmail = process.env.CONTACT_FORM_EMAIL;
+    if (!recipientEmail) {
+      return NextResponse.json(
+        { error: 'CONTACT_FORM_EMAIL environment variable is not set' },
+        { status: 500 }
+      );
+    }
+
+    // Validate SMTP credentials
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPassword = process.env.SMTP_PASSWORD;
+    if (!smtpUser || !smtpPassword) {
+      return NextResponse.json(
+        { error: 'SMTP_USER and SMTP_PASSWORD environment variables are required' },
+        { status: 500 }
+      );
+    }
 
     // Email content
     const emailSubject = `New Contact Form Submission from ${firstName} ${lastName}`;
@@ -65,34 +79,30 @@ This email was sent from the contact form on your website.
       </div>
     `;
 
-    // Send email using Resend SDK
-    if (process.env.RESEND_API_KEY) {
-      const { data, error } = await resend.emails.send({
-        from: 'Contact Form <onboarding@resend.dev>', // Use your verified domain in production
-        to: [recipientEmail],
-        replyTo: email, // Allow replying directly to the sender
-        subject: emailSubject,
-        text: emailBody,
-        html: emailHtml,
-      });
+    // Create transporter
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST || 'smtp.gmail.com',
+      port: parseInt(process.env.SMTP_PORT || '587'),
+      secure: process.env.SMTP_SECURE === 'true', 
+      auth: {
+        user: smtpUser,
+        pass: smtpPassword,
+      },
+    });
 
-      if (error) {
-        console.error('Resend error:', error);
-        return NextResponse.json(
-          { error: error.message || 'Failed to send email' },
-          { status: 500 }
-        );
-      }
+    // Send email using Nodemailer
+    // Sender is the client email (SMTP_USER), recipient is dharmik@rudrx.dev
+    const mailOptions = {
+      from: smtpUser, // Use SMTP_USER (dharmikbhadra8@gmail.com) as sender
+      to: recipientEmail, // CONTACT_FORM_EMAIL (dharmik@rudrx.dev) as recipient
+      replyTo: email, // Allow replying directly to the form submitter
+      subject: emailSubject,
+      text: emailBody,
+      html: emailHtml,
+    };
 
-      console.log('Email sent successfully:', data);
-    } else {
-      // Fallback: Log to console (for development)
-      console.log('=== CONTACT FORM SUBMISSION ===');
-      console.log('To:', recipientEmail);
-      console.log('Subject:', emailSubject);
-      console.log('Body:', emailBody);
-      console.log('==============================');
-    }
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully:', info.messageId);
 
     return NextResponse.json(
       { message: 'Form submitted successfully' },

@@ -75,7 +75,7 @@ export const TESTIMONIALS_CONTENT = {
       company: 'priceport.ai',
       companyUrl: 'https://priceport.ai',
       quote: "Rudrx.dev handled the entire product end-to-end—from architecture and development to ongoing maintenance.\n\nPriceport is used by airports across Oceania for duty-free price monitoring, and the system needed to be reliable, scalable, and data-heavy. The team understood the business context deeply and built a platform that continues to perform as we grow.",
-      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sumeet',
+      avatar: '/clientone.png',
     },
     {
       id: '2',
@@ -84,7 +84,7 @@ export const TESTIMONIALS_CONTENT = {
       company: 'searchomes.com',
       companyUrl: 'https://searchomes.com',
       quote: "We needed more than just software—we needed systems that could support real estate operations without friction.\n\nRudrx.dev built custom ERP workflows and automations that streamlined internal processes and removed a lot of manual overhead. The result was a much clearer, more efficient way to run the business.",
-      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Yogesh',
+      avatar: '/clienttwo.png',
     },
   ]
 };
