@@ -60,10 +60,10 @@ export const metadata: Metadata = {
     description: "Rudrx.dev (Rudrax Techlabs) builds custom SaaS platforms, ERP systems, and workflow automations for businesses. We design software that actually works—focused on clarity, control, and efficiency.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/main_cropped_whiteR.svg",
         width: 1200,
-        height: 630,
-        alt: "Rudrx.dev - Custom Software Development",
+        height: 1200,
+        alt: "Rudrx.dev logo",
       },
     ],
   },
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Rudrx.dev | Custom SaaS, ERP Systems & Workflow Automation",
     description: "Rudrx.dev (Rudrax Techlabs) builds custom SaaS platforms, ERP systems, and workflow automations for businesses.",
-    images: ["/og-image.jpg"],
+    images: ["/main_cropped_whiteR.svg"],
   },
   alternates: {
     canonical: "https://rudrx.dev",
