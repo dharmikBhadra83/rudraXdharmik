@@ -54,15 +54,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://rudrx.dev",
+    url: "https://www.rudrx.dev",
     siteName: "Rudrx.dev",
     title: "Rudrx.dev | Custom SaaS, ERP Systems & Workflow Automation",
     description: "Rudrx.dev (Rudrax Techlabs) builds custom SaaS platforms, ERP systems, and workflow automations for businesses. We design software that actually works—focused on clarity, control, and efficiency.",
     images: [
       {
-        url: "/main_cropped_whiteR.svg",
-        width: 1200,
-        height: 1200,
+        url: "https://www.rudrx.dev/rd-logo.png",
+        width: 1024,
+        height: 1024,
         alt: "Rudrx.dev logo",
       },
     ],
@@ -71,12 +71,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Rudrx.dev | Custom SaaS, ERP Systems & Workflow Automation",
     description: "Rudrx.dev (Rudrax Techlabs) builds custom SaaS platforms, ERP systems, and workflow automations for businesses.",
-    images: ["/main_cropped_whiteR.svg"],
+    images: ["https://www.rudrx.dev/rd-logo.png"],
   },
   alternates: {
-    canonical: "https://rudrx.dev",
+    canonical: "https://www.rudrx.dev",
   },
-  metadataBase: new URL("https://rudrx.dev"),
+  metadataBase: new URL("https://www.rudrx.dev"),
   category: "technology",
   classification: "Software Development, SaaS, ERP Systems, Business Automation",
 };
